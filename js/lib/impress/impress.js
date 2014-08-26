@@ -721,7 +721,12 @@
                 event.preventDefault();
             }
         }, false);
-        
+        Hammer(document.body).on("swipeleft", function(){
+				api.prev();
+			});
+		Hammer(document.body).on("swiperight", function(){
+				api.next();
+			});
         // delegated handler for clicking on the links to presentation steps
         document.addEventListener("click", function ( event ) {
             // event delegation with "bubbling"
@@ -761,25 +766,6 @@
             }
         }, false);
         
-        // touch handler to detect taps on the left and right side of the screen
-        // based on awesome work of @hakimel: https://github.com/hakimel/reveal.js
-        document.addEventListener("touchstart", function ( event ) {
-            if (event.touches.length === 1) {
-                var x = event.touches[0].clientX,
-                    width = window.innerWidth * 0.3,
-                    result = null;
-                    
-                if ( x < width ) {
-                    result = api.prev();
-                } else if ( x > window.innerWidth - width ) {
-                    result = api.next();
-                }
-                
-                if (result) {
-                    event.preventDefault();
-                }
-            }
-        }, false);
         
         // rescale presentation when window is resized
         window.addEventListener("resize", throttle(function () {
