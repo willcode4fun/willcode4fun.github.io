@@ -44,7 +44,7 @@ EventManager.prototype.isMobile =  {
 };
 EventManager.prototype.onUpAction = function(_callback) {
 	if(this.isMobile.any()){
-		Hammer(document.body).on("swipeup", function(event){
+		Hammer(document, { drag_lock_to_axis: true }).on("swipeup", function(event){
 			 _callback.call(this);
 			 event.gesture.preventDefault();
 		  } );
@@ -59,7 +59,7 @@ EventManager.prototype.onUpAction = function(_callback) {
 };
 EventManager.prototype.onDownAction = function(_callback) {
 	if(this.isMobile.any()){
-		Hammer(document.body).on("swipedown", function(event){
+		Hammer(document, { drag_lock_to_axis: true }).on("swipedown", function(event){
 			 _callback.call(this);
 			 event.gesture.preventDefault();
 		  } );
