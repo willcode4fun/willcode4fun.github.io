@@ -54,6 +54,18 @@ EventManager.prototype.onUpAction = function(_callback) {
 		  });
 	}
 };
+EventManager.prototype.onDownAction = function(_callback) {
+	if(this.isMobile.any()){
+		Hammer(element).on("swipedown", _callback );
+	} else {
+		$( document.body ).keyup(function(event){
+			  if (event.which == KeyCodes.DOWN && typeof _callback == 'function') {
+				  _callback.call(this);
+				  event.preventDefault();
+			    }
+		  });
+	}
+};
 EventManager.prototype.onLeftAction = function(_callback) {
 	if(this.isMobile.any()){
 		Hammer(element).on("swipeleft", _callback );
@@ -66,7 +78,18 @@ EventManager.prototype.onLeftAction = function(_callback) {
 		  });
 	}
 };
-
+EventManager.prototype.onRightAction = function(_callback) {
+	if(this.isMobile.any()){
+		Hammer(element).on("swiperight", _callback );
+	} else {
+		$( document.body ).keyup(function(event){
+			  if (event.which == KeyCodes.RIGHT && typeof _callback == 'function') {
+				  _callback.call(this);
+				  event.preventDefault();
+			    }
+		  });
+	}
+};
 
 
 	
