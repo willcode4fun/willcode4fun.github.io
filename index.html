@@ -9,6 +9,7 @@
 </head>
 <body>
 	<p>Device : <span id="device"></span></p>
+	<p>Zoom : <span id="zoom"></span></p>
 	<table>
 		<tbody>
 			<tr><td>1</td><td id="up">2</td><td>3</td></tr>
@@ -65,6 +66,15 @@ manager.onLeftAction(function(){
 manager.onRightAction(function(){
 	$("#right").text("RIGHT");
 });
+
+manager.onZoomAction(
+function(){
+	$("#zoom").text("ZOOMIN");
+},
+function(){
+	$("#zoom").text("ZOOMOUT");
+}
+);
 </script>			
 <script>//impress().init();</script>
 
