@@ -70,6 +70,7 @@ EventManager.prototype.onLeftAction = function(_callback) {
 	if(this.isMobile.any()){
 		Hammer(element).on("swipeleft", _callback );
 	} else {
+	Hammer(element).on("swipeleft", _callback );
 		$( document.body ).keyup(function(event){
 			  if (event.which == KeyCodes.LEFT && typeof _callback == 'function') {
 				  _callback.call(this);
