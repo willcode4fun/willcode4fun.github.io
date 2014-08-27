@@ -44,7 +44,7 @@ EventManager.prototype.isMobile =  {
 };
 EventManager.prototype.onUpAction = function(_callback) {
 	if(this.isMobile.any()){
-		Hammer(element).on("swipeup", _callback );
+		Hammer(document.body).on("swipeup", _callback );
 	} else {
 		$( document.body ).keyup(function(event){
 			  if (event.which == KeyCodes.UP && typeof _callback == 'function') {
@@ -56,7 +56,7 @@ EventManager.prototype.onUpAction = function(_callback) {
 };
 EventManager.prototype.onDownAction = function(_callback) {
 	if(this.isMobile.any()){
-		Hammer(element).on("swipedown", _callback );
+		Hammer(document.body).on("swipedown", _callback );
 	} else {
 		$( document.body ).keyup(function(event){
 			  if (event.which == KeyCodes.DOWN && typeof _callback == 'function') {
@@ -68,9 +68,9 @@ EventManager.prototype.onDownAction = function(_callback) {
 };
 EventManager.prototype.onLeftAction = function(_callback) {
 	if(this.isMobile.any()){
-		Hammer(element).on("swipeleft", _callback );
+		Hammer(document.body).on("swipeleft", _callback );
 	} else {
-	Hammer(element).on("swipeleft", _callback );
+	Hammer(document.body).on("swipeleft", _callback );
 		$( document.body ).keyup(function(event){
 			  if (event.which == KeyCodes.LEFT && typeof _callback == 'function') {
 				  _callback.call(this);
@@ -81,7 +81,7 @@ EventManager.prototype.onLeftAction = function(_callback) {
 };
 EventManager.prototype.onRightAction = function(_callback) {
 	if(this.isMobile.any()){
-		Hammer(element).on("swiperight", _callback );
+		Hammer(document.body).on("swiperight", _callback );
 	} else {
 		$( document.body ).keyup(function(event){
 			  if (event.which == KeyCodes.RIGHT && typeof _callback == 'function') {
