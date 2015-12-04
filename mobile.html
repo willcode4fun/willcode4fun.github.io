@@ -11,18 +11,19 @@
 	}
 	
 	#main-area {
-		width :500px;
-		height :500px;
+		width :90vh;
+		height :90vh;
 		float: left;
 	}
 	.buttons {
 		float: left;
 	}
 	.button {
-		width :100px;
-		height :100px;
+		width :18vh;
+		height :18vh;
 	}
 	@media screen and (orientation:portrait) {
+
 		#container{
 				-ms-transform: rotate(45deg); /* IE 9 */
 				-webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
@@ -33,6 +34,14 @@
 			-ms-transform: rotate(-90deg); /* IE 9 */
 			-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
 			transform: rotate(-90deg);
+		}
+		#main-area {
+			width :90vw;
+			height :90vw;
+		}
+			.button {
+			width :18vw;
+			height :18vw;
 		}
 	}
 	.content {
