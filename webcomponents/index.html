@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title>ECMAScript 2015 &amp; Webcomponents</title>
-    <link href="css\styles.css" rel="stylesheet" />
-	<script src="js\lib\webcomponents\webcomponents-lite.min.js" type="text/javascript"></script>
-	<script src="js\es5\bundle.js" type="text/javascript"></script>
+	<script src="js/lib/webcomponents/webcomponents-lite.min.js" type="text/javascript"></script>
+	<script src="js/es5/bundle.js" type="text/javascript"></script>
 </head>
 <body>
 <az-presentation>
@@ -14,28 +13,19 @@
 	</az-slide>
 	
 	<az-slide  next="fin" detail="detail1" id="codesample" tx="1000" rz="45">
-		<az-format-code>
-package fr.allianz.tc.dpi.core.mapper;
-
+		<az-format-code>package fr.allianz.tc.dpi.core.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
-public class CollaborateurRowMapper implements RowMapper<Collaborateur> {
-
+public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
 	@Override
 	public Collaborateur mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-
-	  
-	  if (MapperUtils.hasColumn(resultSet, ColumnsNameUtil.EVALUATION_COLUMN_DATE_DROIT_REPONSE)) {
-		c.setDateModifEvaluation(resultSet.getDate(ColumnsNameUtil.EVALUATION_COLUMN_DATE_DROIT_REPONSE));
-	  }
-	  if (MapperUtils.hasColumn(resultSet, ColumnsNameUtil.EVALUATION_COLUMN_CODE_ETAT)) {
-		c.setEtatEvaluation(Etat.findEtatByCode(trim(resultSet.getString(EVALUATION_COLUMN_CODE_ETAT))));
+	  if (MapperUtils.hasColumn(resultSet, EVALUATION_COLUMN_DATE_DROIT_REPONSE)) {
+		c.setDateModifEvaluation(getDate(EVALUATION_COLUMN_DATE_DROIT_REPONSE));
 	  }
 	 return c;
 	}
-
 }</az-format-code>
 	</az-slide>
 	

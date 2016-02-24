@@ -690,7 +690,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\r\n    height: 100%;\r\n    overflow: hidden;\r\n}\r\n\r\naz-presentation {\r\n\tposition: absolute;\r\n    display: block;\r\n\twidth : 100%;\r\n\theight : 100%;\r\n\ttop :50%;\r\n\tleft :50%;\r\n    transform: translate(50%, 50%);\r\n    transform-origin: top left 0;\r\n    transform-style: preserve-3d;\r\n\tperspective :1000px;\r\n\tperspective-origin: 50% 50%;\r\n    transition: transform 0.3s ease-in 0s;\r\n}\r\naz-slide {\r\n\tposition: absolute;\r\n    display: block;\r\n\ttransform-style: preserve-3d;\r\n\ttransform-origin: 50% 50% 50%;\r\n    width: 900px;\r\n    height: 700px;\r\n\toverflow: hidden;\r\n    padding: 20px 30px;\r\n\r\n    background-color: white;\r\n    border: 1px solid rgba(0, 0, 0, .3);\r\n    border-radius: 10px;\r\n    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);\r\n\r\n    color: rgb(102, 102, 102);\r\n    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);\r\n\r\n    font-family: 'PT Serif', georgia, serif;\r\n    font-size: 30px;\r\n    line-height: 36px;\r\n    letter-spacing: -1px;\r\n\t\r\n\tmargin: 0;\r\n    opacity: 0.3;\r\n\tz-index: 10;\r\n\t\t  \r\n    -webkit-transition: opacity 1s;\r\n    -moz-transition:    opacity 1s;\r\n    -ms-transition:     opacity 1s;\r\n    -o-transition:      opacity 1s;\r\n    transition:         opacity 1s;\r\n}\r\naz-slide.active{\r\n\topacity: 1;\r\n\tz-index: 100;\r\n}", ""]);
+	exports.push([module.id, "body {\r\n    height: 100%;\r\n    overflow: hidden;\r\n}\r\n\r\naz-presentation {\r\n\tposition: absolute;\r\n    display: block;\r\n\twidth : 100%;\r\n\theight : 100%;\r\n\ttop :50%;\r\n\tleft :50%;\r\n    transform: translate(50%, 50%);\r\n    transform-origin: top left 0;\r\n    transform-style: preserve-3d;\r\n\tperspective :1000px;\r\n\tperspective-origin: 50% 50%;\r\n    transition: transform 0.3s ease-in 0s;\r\n}\r\naz-slide {\r\n\tposition: absolute;\r\n    display: block;\r\n\ttransform-style: preserve-3d;\r\n\ttransform-origin: 50% 50% 50%;\r\n    width: 900px;\r\n    height: 700px;\r\n\toverflow: hidden;\r\n    padding: 20px 30px;\r\n\r\n    background-color: white;\r\n    border: 1px solid rgba(0, 0, 0, .3);\r\n    border-radius: 10px;\r\n    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);\r\n\r\n    color: rgb(102, 102, 102);\r\n    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);\r\n\r\n    font-family: 'PT Serif', georgia, serif;\r\n    font-size: 30px;\r\n    line-height: 36px;\r\n    letter-spacing: -1px;\r\n\t\r\n\tmargin: 0;\r\n    opacity: 0.3;\r\n\tz-index: 10;\r\n\t\t  \r\n    -webkit-transition: opacity 1s;\r\n    -moz-transition:    opacity 1s;\r\n    -ms-transition:     opacity 1s;\r\n    -o-transition:      opacity 1s;\r\n    transition:         opacity 1s;\r\n}\r\naz-slide.active{\r\n\topacity: 1;\r\n\tz-index: 100;\r\n}\r\n\r\naz-slide > az-format-code{\r\n\tfont-family: Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;\r\n\tfont-weight:bold;\r\n\tfont-size: 16px;\r\n    line-height: 20px;\r\n}", ""]);
 
 	// exports
 
@@ -703,11 +703,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _transformUtils = __webpack_require__(15);
+	var _transformUtils = __webpack_require__(14);
 
 	var _transformUtils2 = _interopRequireDefault(_transformUtils);
 
-	var _cssUtils = __webpack_require__(16);
+	var _cssUtils = __webpack_require__(15);
 
 	var _cssUtils2 = _interopRequireDefault(_cssUtils);
 
@@ -768,8 +768,7 @@
 	document.registerElement('az-slide', AzSlideElement);
 
 /***/ },
-/* 14 */,
-/* 15 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -847,7 +846,7 @@
 	exports.default = TransformBuilder;
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
