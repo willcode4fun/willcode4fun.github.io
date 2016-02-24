@@ -7,7 +7,9 @@
 
 
     <style>
-	
+	body, div {
+		overflow:hidden;
+	}
 	.lightgreen {
 		background-color:#AFA;
 	}
@@ -40,6 +42,11 @@
 	#buttons-sub {
 		position: absolute;
 		left: 120vh;
+		top: 0px;
+	}
+	#buttons-3 {
+		position: absolute;
+		left: 140vh;
 		top: 0px;
 	}
 	.button {
@@ -79,15 +86,18 @@
 			width :20vw;
 			height :20vw;
 		}
-			.fa {
-		font-size:20vw;
-		width: 1em;
-	}
+		.fa {
+			font-size:20vw;
+			width: 1em;
+		}
 		#buttons {
 			left: 100vw;
 		}
 		#buttons-sub {
 			left: 120vw;
+		}
+		#buttons-3 {
+			left: 140vw;
 		}
 	} 
 
@@ -108,6 +118,14 @@ AABBCCDD
 <div class="button"><div class="content lightred"><i class="fa fa-fort-awesome fa-fw"></i></div></div>
 </div>
 <div id="buttons-sub">
+<div class="button"><div class="content lightgrey">AA</div></div>
+<div class="button"><div class="content lightred"><i class="fa fa-key fa-fw"></i></div></div>
+<div class="button"><div class="content lightgrey"><i class="fa fa-truck fa-fw"></i></div></div>
+<div class="button"><div class="content lightred"><i class="fa fa-cog fa-fw"></i></div></div>
+<div class="button"><div class="content lightgrey"><i class="fa fa-cog fa-fw"></i></div></div>
+</div>
+
+<div id="buttons-3">
 <div class="button"><div class="content lightgrey">AA</div></div>
 <div class="button"><div class="content lightred"><i class="fa fa-key fa-fw"></i></div></div>
 <div class="button"><div class="content lightgrey"><i class="fa fa-truck fa-fw"></i></div></div>

@@ -1,0 +1,56 @@
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+az-presentation {
+	position: absolute;
+    display: block;
+	width : 100%;
+	height : 100%;
+	top :50%;
+	left :50%;
+    transform: translate(50%, 50%);
+    transform-origin: top left 0;
+    transform-style: preserve-3d;
+	perspective :1000px;
+	perspective-origin: 50% 50%;
+    transition: transform 0.3s ease-in 0s;
+}
+az-slide {
+	position: absolute;
+    display: block;
+	transform-style: preserve-3d;
+	transform-origin: 50% 50% 50%;
+    width: 900px;
+    height: 700px;
+	overflow: hidden;
+    padding: 20px 30px;
+
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+
+    color: rgb(102, 102, 102);
+    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+
+    font-family: 'PT Serif', georgia, serif;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -1px;
+	
+	margin: 0;
+    opacity: 0.3;
+	z-index: 10;
+		  
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+az-slide.active{
+	opacity: 1;
+	z-index: 100;
+}
