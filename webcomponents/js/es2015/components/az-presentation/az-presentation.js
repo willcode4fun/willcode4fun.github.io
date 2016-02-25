@@ -17,18 +17,20 @@ class AzPresentationElement extends HTMLElement {
 		let self = this;
 		window.addEventListener('keypress', function(evt) {
 			evt = evt || window.event;
-			self.move(evt.keyCode);
-			evt.preventDefault();
+			if(self.move(evt.keyCode)){
+				evt.preventDefault();
+			}
 		}, false);
 	};
 	move(code){
 		console.log("move:"+code);
 		if(this.currentActive){
 			switch(code){
-				case 38 : this.previousDetail();break;
-				case 40 : this.nextDetail();break;
-				case 37 : this.previousSlide();break;
-				case 39 : this.nextSlide();break;
+				case 38 : this.previousDetail();return true;
+				case 40 : this.nextDetail();return true;
+				case 37 : this.previousSlide();return true;
+				case 39 : this.nextSlide();return true;
+				default: return false;
 			};
 		}
 	}

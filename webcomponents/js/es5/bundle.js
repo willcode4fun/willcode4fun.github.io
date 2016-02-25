@@ -79,17 +79,12 @@
 		}
 
 		_createClass(FormatCodeElement, [{
-			key: 'replaceText',
-			value: function replaceText(str) {
-				var str1 = String(str);
-				return str1.replace(/\n/g, "<br/>");
-			}
-		}, {
 			key: 'createdCallback',
 			value: function createdCallback() {
-				var coloredHTML = prettyPrintOne(this.replaceText(this.innerHTML));
+				var coloredHTML = prettyPrintOne(this.replaceText(this.innerHTML.trim()));
 				this.innerHTML = template;
 				this.childNodes[0].innerHTML = coloredHTML;
+				this.appendTitle(this.getAttribute("file-name"));
 			}
 		}, {
 			key: 'attachedCallback',
@@ -97,6 +92,22 @@
 		}, {
 			key: 'attributeChangedCallback',
 			value: function attributeChangedCallback(attrName, oldVal, newVal) {}
+		}, {
+			key: 'replaceText',
+			value: function replaceText(str) {
+				var str1 = String(str);
+				return str1.replace(/\n/g, "<br/>");
+			}
+		}, {
+			key: 'appendTitle',
+			value: function appendTitle(text) {
+				if (text) {
+					var titleNode = document.createElement("div");
+					titleNode.className = "code-title";
+					titleNode.appendChild(document.createTextNode(text));
+					this.insertBefore(titleNode, this.firstChild);
+				}
+			}
 		}]);
 
 		return FormatCodeElement;
@@ -139,7 +150,7 @@
 
 
 	// module
-	exports.push([module.id, ".pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}", ""]);
+	exports.push([module.id, ".pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}az-format-code.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}", ""]);
 
 	// exports
 
@@ -489,7 +500,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Pretty printing styles. Used with prettify.js. */\r\n/* Vim sunburst theme by David Leibovic */\r\n\r\npre .str, code .str { color: #65B042; } /* string  - green */\r\npre .kwd, code .kwd { color: #E28964; } /* keyword - dark pink */\r\npre .com, code .com { color: #AEAEAE; font-style: italic; } /* comment - gray */\r\npre .typ, code .typ { color: #89bdff; } /* type - light blue */\r\npre .lit, code .lit { color: #3387CC; } /* literal - blue */\r\npre .pun, code .pun { color: #fff; } /* punctuation - white */\r\npre .pln, code .pln { color: #fff; } /* plaintext - white */\r\npre .tag, code .tag { color: #89bdff; } /* html/xml tag    - light blue */\r\npre .atn, code .atn { color: #bdb76b; } /* html/xml attribute name  - khaki */\r\npre .atv, code .atv { color: #65B042; } /* html/xml attribute value - green */\r\npre .dec, code .dec { color: #3387CC; } /* decimal - blue */\r\n\r\npre.prettyprint, code.prettyprint {\r\n\tbackground-color: #000;\r\n\t-moz-border-radius: 8px;\r\n\t-webkit-border-radius: 8px;\r\n\t-o-border-radius: 8px;\r\n\t-ms-border-radius: 8px;\r\n\t-khtml-border-radius: 8px;\r\n\tborder-radius: 8px;\r\n}\r\n\r\npre.prettyprint {\r\n\twidth: 95%;\r\n\tmargin: 1em auto;\r\n\tpadding: 1em;\r\n\twhite-space: pre-wrap;\r\n}\r\n\r\n\r\n/* Specify class=linenums on a pre to get line numbering */\r\nol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */\r\nli.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }\r\n/* Alternate shading for lines */\r\nli.L1,li.L3,li.L5,li.L7,li.L9 { }\r\n\r\n@media print {\r\n  pre .str, code .str { color: #060; }\r\n  pre .kwd, code .kwd { color: #006; font-weight: bold; }\r\n  pre .com, code .com { color: #600; font-style: italic; }\r\n  pre .typ, code .typ { color: #404; font-weight: bold; }\r\n  pre .lit, code .lit { color: #044; }\r\n  pre .pun, code .pun { color: #440; }\r\n  pre .pln, code .pln { color: #000; }\r\n  pre .tag, code .tag { color: #006; font-weight: bold; }\r\n  pre .atn, code .atn { color: #404; }\r\n  pre .atv, code .atv { color: #060; }\r\n}", ""]);
+	exports.push([module.id, "/* Pretty printing styles. Used with prettify.js. */\r\n/* Vim sunburst theme by David Leibovic */\r\n\r\naz-format-code .str, code .str { color: #65B042; } /* string  - green */\r\naz-format-code .kwd, code .kwd { color: #E28964; } /* keyword - dark pink */\r\naz-format-code .com, code .com { color: #AEAEAE; font-style: italic; } /* comment - gray */\r\naz-format-code .typ, code .typ { color: #89bdff; } /* type - light blue */\r\naz-format-code .lit, code .lit { color: #3387CC; } /* literal - blue */\r\naz-format-code .pun, code .pun { color: #fff; } /* punctuation - white */\r\naz-format-code .pln, code .pln { color: #fff; } /* plaintext - white */\r\naz-format-code .tag, code .tag { color: #89bdff; } /* html/xml tag    - light blue */\r\naz-format-code .atn, code .atn { color: #bdb76b; } /* html/xml attribute name  - khaki */\r\naz-format-code .atv, code .atv { color: #65B042; } /* html/xml attribute value - green */\r\naz-format-code .dec, code .dec { color: #3387CC; } /* decimal - blue */\r\n\r\npre.prettyprint, code.prettyprint {\r\n\tbackground-color: #000;\r\n\t-moz-border-radius: 8px;\r\n\t-webkit-border-radius: 8px;\r\n\t-o-border-radius: 8px;\r\n\t-ms-border-radius: 8px;\r\n\t-khtml-border-radius: 8px;\r\n\tborder-radius: 8px;\r\n}\r\n\r\npre.prettyprint {\r\n\twidth: 95%;\r\n\tmargin: 1em auto;\r\n\tpadding: 1em;\r\n\twhite-space: pre-wrap;\r\n}\r\n\r\n\r\n/* Specify class=linenums on a pre to get line numbering */\r\nol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */\r\nli.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }\r\n/* Alternate shading for lines */\r\nli.L1,li.L3,li.L5,li.L7,li.L9 { }\r\n\r\n@media print {\r\n  az-format-code .str, code .str { color: #060; }\r\n  az-format-code .kwd, code .kwd { color: #006; font-weight: bold; }\r\n  az-format-code .com, code .com { color: #600; font-style: italic; }\r\n  az-format-code .typ, code .typ { color: #404; font-weight: bold; }\r\n  az-format-code .lit, code .lit { color: #044; }\r\n  az-format-code .pun, code .pun { color: #440; }\r\n  az-format-code .pln, code .pln { color: #000; }\r\n  az-format-code .tag, code .tag { color: #006; font-weight: bold; }\r\n  az-format-code .atn, code .atn { color: #404; }\r\n  az-format-code .atv, code .atv { color: #060; }\r\n}", ""]);
 
 	// exports
 
@@ -593,8 +604,9 @@
 				var self = this;
 				window.addEventListener('keypress', function (evt) {
 					evt = evt || window.event;
-					self.move(evt.keyCode);
-					evt.preventDefault();
+					if (self.move(evt.keyCode)) {
+						evt.preventDefault();
+					}
 				}, false);
 			}
 		}, {
@@ -604,13 +616,15 @@
 				if (this.currentActive) {
 					switch (code) {
 						case 38:
-							this.previousDetail();break;
+							this.previousDetail();return true;
 						case 40:
-							this.nextDetail();break;
+							this.nextDetail();return true;
 						case 37:
-							this.previousSlide();break;
+							this.previousSlide();return true;
 						case 39:
-							this.nextSlide();break;
+							this.nextSlide();return true;
+						default:
+							return false;
 					};
 				}
 			}
@@ -820,6 +834,7 @@
 			value: function scale(_scale) {
 				if (_scale) {
 					this.transform += ' scale(' + _scale + ' ) ';
+					this.reverseTransform = 'scale(' + 1 / _scale + ') ' + this.reverseTransform;
 				}
 				//this.reverseTransform = `scale(${-1*scale}) `+ this.reverseTransform;
 				return this;
@@ -871,7 +886,7 @@
 					position: "absolute",
 					transform: transform,
 					transformStyle: "preserve-3d",
-					transition: "transform 0.3s ease-in",
+					transition: "transform 0.4s ease-in",
 					transformOrigin: "50% 50% 50%"
 				});
 			}

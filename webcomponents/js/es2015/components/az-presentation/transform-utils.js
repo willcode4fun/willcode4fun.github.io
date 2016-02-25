@@ -28,6 +28,7 @@ export default class TransformBuilder{
 	scale(scale){
 		if(scale){
 			this.transform += ` scale(${scale} ) `;
+			this.reverseTransform = `scale(${1/scale}) `+ this.reverseTransform;
 		}
 		//this.reverseTransform = `scale(${-1*scale}) `+ this.reverseTransform;
 		return this;

@@ -4,7 +4,7 @@ export default class CssUtils{
                 position: "absolute",
                 transform: transform,
                 transformStyle: "preserve-3d",
-				transition: "transform 0.3s ease-in",
+				transition: "transform 0.4s ease-in",
 				transformOrigin: "50% 50% 50%"
             });
 	}
