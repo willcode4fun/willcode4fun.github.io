@@ -3,53 +3,55 @@
 <head>
     <meta charset="utf-8" />
     <title>ECMAScript 2015 &amp; Webcomponents</title>
-	<link rel="stylesheet" href="css/styles.css"></link>
-	<script src="js/lib/webcomponents/webcomponents-lite.min.js" type="text/javascript"></script>
-	<script src="js/es5/bundle.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/styles.css"></link>
+    <script src="js/lib/webcomponents/webcomponents-lite.min.js" type="text/javascript"></script>
+    <script src="js/es5/bundle.js" type="text/javascript"></script>
 </head>
 <body>
 <az-presentation>
-	<az-slide id="start" start next="setup" >
-	<p>Welcome!</p>
-	
-		<az-format-code file-name="This pretty print block is generated with ...">
+    <az-slide id="start" start next="setup" >
+    <p>Welcome!</p>
+    
+        <az-format-code file-name="This pretty print block is generated with ...">
 &lt;az-format-code file-name="This pretty print block is generated with ...">
-	&lt;az-format-code file-name="This pretty print block is generated with ...">
-		... and so on !
-	&lt;/az-format-code>
+    &lt;az-format-code file-name="This pretty print block is generated with ...">
+        ... and so on !
+    &lt;/az-format-code>
 &lt;/az-format-code>
-		</az-format-code>
-	
-	</az-slide>
+        </az-format-code>
+    
+    </az-slide>
 
-	<az-slide id="setup" detail="setup-step2" next="codesample" >
-		<h1>Setup ! ( + <img id="nodelogo" src ="https://nodejs.org/static/images/logos/nodejs-new-white-pantone.png" />) </h1>
-		<az-format-code file-name="cmd >">
+    <az-slide id="setup" detail="setup-step2" next="codesample" >
+        <p>Setup ! ( + <img id="nodelogo" src ="https://nodejs.org/static/images/logos/nodejs-new-white-pantone.png" />) </p>
+        <az-format-code file-name="cmd >">
 npm install webpack -g
 npm install --save-dev babel-loader babel-preset-es2015 raw-loader html-loader script-loader style-loader css-loader
 webpack --progress --colors --watch
-		</az-format-code>
-		
-		<az-format-code file-name="Arborescence">
+        </az-format-code>
+        
+        <az-format-code file-name="Arborescence" lang="tree">
 index.html
 css
-└-styles.css
+└─styles.css
 js
-└-webpack.config.js
-└-main.js
-└-lib
-| └-google-code-prettify
-| | └-... // prettify js lib
-| └-webcomponents
-|   └-... // webcomponents polyfill
-└-es2015
-  └-... // place your es2015 code here !
-		</az-format-code>
-		
-	</az-slide>
-	
-	<az-slide id="setup-step2" detail="setup-step3" ty="800" >		
-		<az-format-code file-name="js/webpack.config.js">
+└─webpack.config.js
+└─main.js
+└─lib
+│ └─google-code-prettify
+│ │ └─...  // prettify js lib
+│ └─webcomponents
+│   └─... // webcomponents polyfill
+└─es2015
+│ └─...  // place your es2015 code here !
+└─es5
+  └─...  // es5 bundle and old scripts will be placed here
+        </az-format-code>
+        
+    </az-slide>
+    
+    <az-slide id="setup-step2" detail="setup-step3" ty="800" >      
+        <az-format-code file-name="js/webpack.config.js">
 path = require('path');
 module.exports = {
     entry: "./main.js",
@@ -60,75 +62,110 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.css$/, loader: "style!css" },
-			{ test: /\.js$/, loader: 'babel-loader', 
-				include: [ path.resolve(__dirname, "es2015") ], 
-				query: { presets: ['es2015'] } }
+            { test: /\.js$/, loader: 'babel-loader', 
+                include: [ path.resolve(__dirname, "es2015") ], 
+                query: { presets: ['es2015'] } }
         ]
     },
     resolve: {
         alias: {
             prettify: path.join(__dirname,'lib/google-code-prettify'),
-			webcomponents: path.join(__dirname,'lib/webcomponents/webcomponents.js')
+            webcomponents: path.join(__dirname,'lib/webcomponents/webcomponents.js')
         }
     }
 };
-		</az-format-code>
-		
-		<az-format-code file-name="js/main.js">
+        </az-format-code>
+        
+        <az-format-code file-name="js/main.js">
 require("./es2015/components/az-format-code/az-format-code.js");
 require("./es2015/components/az-presentation/az-presentation.js");
-		</az-format-code>
-	</az-slide>
-	
-	<az-slide id="setup-step3" ty="400" >		
-	Step 3
-	</az-slide>
-	
-	
-	<az-slide  next="slide3" detail="detail1" id="codesample" tx="1000" rz="45">
-		<az-format-code file-name="CollaborateurRowMapper.java">package fr.allianz.tc.dpi.core.mapper;
+        </az-format-code>
+    </az-slide>
+    
+    <az-slide id="setup-step3" ty="400" >       
+<az-format-code file-name="js\es2015\components\az-format-code\az-format-code.js">
+require("prettify/prettify.js");
+import 'prettify/prettify.css';
+import './sunburst.css';
+const template = require("html!./template.html");
+
+class FormatCodeElement extends HTMLElement {
+
+    createdCallback() {
+        const coloredHTML = prettyPrintOne(this.replaceText(this.innerHTML.trim()), this.getAttribute("lang"));
+        this.innerHTML = template;
+        this.childNodes[0].innerHTML = coloredHTML;
+        this.appendTitle(this.getAttribute("file-name"));
+    };
+    
+    attachedCallback() { };
+    
+    attributeChangedCallback(attrName, oldVal, newVal) { };
+    
+    replaceText(str) {
+        let str1 = String(str);
+        return str1.replace(/\n/g,"<br/>");
+    };
+    
+    appendTitle(text){
+        if(text) {
+            var titleNode = document.createElement("div");
+            titleNode.className = "code-title";
+            titleNode.appendChild(document.createTextNode(text));
+            this.insertBefore(titleNode, this.firstChild);
+        }
+    }
+}
+document.registerElement('az-format-code', FormatCodeElement);  
+</az-format-code>   
+    
+    </az-slide>
+    
+    
+    <az-slide  next="slide3" detail="detail1" id="codesample" tx="1000" rz="45">
+        <az-format-code file-name="CollaborateurRowMapper.java">package fr.allianz.tc.dpi.core.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
 public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
-	@Override
-	public Collaborateur mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-	  if (MapperUtils.hasColumn(resultSet, EVALUATION_COLUMN_DATE_DROIT_REPONSE)) {
-		c.setDateModifEvaluation(getDate(EVALUATION_COLUMN_DATE_DROIT_REPONSE));
-	  }
-	 return c;
-	}
+    @Override
+    public Collaborateur mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+      if (MapperUtils.hasColumn(resultSet, EVALUATION_COLUMN_DATE_DROIT_REPONSE)) {
+        c.setDateModifEvaluation(getDate(EVALUATION_COLUMN_DATE_DROIT_REPONSE));
+      }
+     return c;
+    }
 }</az-format-code>
-	</az-slide>
-	
-	<az-slide id="detail1" detail="detail1_1" tx="600" ty="400" rz="45" scale="0.7">
-	DETAIL 1
-	</az-slide>
-	<az-slide id="detail1_1" tx="800" ty="500" rz="45" scale="0.7">
-	DETAIL 1
-	</az-slide>
-	
-	<az-slide id="slide3" next="slide4"  tx="2000">
-	SLIDE 3
-	</az-slide>
-	
-	<az-slide id="slide4" next="slide5"  tx="3000" rz="-45">
-	4444
-	</az-slide>
-	
-	<az-slide id="slide5" next="fin"  tx="4000" scale="1.2">
-	5555
-	</az-slide>
-	
-	<az-slide id="fin" next="start" detail="detail2"  tx="5000">
-	THIS IS THE LAST SLIDE
-	</az-slide>
-	
-	<az-slide id="detail2" tx="5000" ty="600" scale="0.7">
-	THANKS
-	</az-slide>
-	
+    </az-slide>
+    
+    <az-slide id="detail1" detail="detail1_1" tx="600" ty="400" rz="45" scale="0.7">
+    DETAIL 1
+    </az-slide>
+    <az-slide id="detail1_1" tx="800" ty="500" rz="45" scale="0.7">
+    DETAIL 1
+    </az-slide>
+    
+    <az-slide id="slide3" next="slide4"  tx="2000">
+    SLIDE 3
+    </az-slide>
+    
+    <az-slide id="slide4" next="slide5"  tx="3000" rz="-45">
+    4444
+    </az-slide>
+    
+    <az-slide id="slide5" next="fin"  tx="4000" scale="1.2">
+    5555
+    </az-slide>
+    
+    <az-slide id="fin" next="start" detail="detail2"  tx="5000">
+    THIS IS THE LAST SLIDE
+    </az-slide>
+    
+    <az-slide id="detail2" tx="5000" ty="600" scale="0.7">
+    THANKS
+    </az-slide>
+    
 </az-presentation>
 </body>
 </html>

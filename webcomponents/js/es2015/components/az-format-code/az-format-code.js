@@ -1,25 +1,25 @@
 require("prettify/prettify.js");
+require("prettify/lang-tree.js");
+import TextUtils from "./text-utils";
 import 'prettify/prettify.css';
 import './sunburst.css';
+
 const template = require("html!./template.html");
 
 class FormatCodeElement extends HTMLElement {
 
-	createdCallback() {
-		const coloredHTML = prettyPrintOne(this.replaceText(this.innerHTML.trim()));
-		this.innerHTML = template;
-		this.childNodes[0].innerHTML = coloredHTML;
-		this.appendTitle(this.getAttribute("file-name"));
-	};
+	createdCallback() { };
 	
-	attachedCallback() { };
+	attachedCallback() { this.render(); };
 	
 	attributeChangedCallback(attrName, oldVal, newVal) { };
 	
-	replaceText(str) {
-		let str1 = String(str);
-		return str1.replace(/\n/g,"<br/>");
-	};
+	render() {
+		const coloredHTML = prettyPrintOne(TextUtils.replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
+		this.innerHTML = template;
+		this.childNodes[0].innerHTML = coloredHTML;
+		this.appendTitle(this.getAttribute("file-name"));
+	}
 	
 	appendTitle(text){
 		if(text) {

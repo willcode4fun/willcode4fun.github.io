@@ -51,13 +51,19 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _textUtils = __webpack_require__(16);
+
+	var _textUtils2 = _interopRequireDefault(_textUtils);
 
 	__webpack_require__(2);
 
 	__webpack_require__(6);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -66,6 +72,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	__webpack_require__(8);
+	__webpack_require__(17);
+
 
 	var template = __webpack_require__(9);
 
@@ -79,27 +87,26 @@
 		}
 
 		_createClass(FormatCodeElement, [{
-			key: 'createdCallback',
-			value: function createdCallback() {
-				var coloredHTML = prettyPrintOne(this.replaceText(this.innerHTML.trim()));
+			key: "createdCallback",
+			value: function createdCallback() {}
+		}, {
+			key: "attachedCallback",
+			value: function attachedCallback() {
+				this.render();
+			}
+		}, {
+			key: "attributeChangedCallback",
+			value: function attributeChangedCallback(attrName, oldVal, newVal) {}
+		}, {
+			key: "render",
+			value: function render() {
+				var coloredHTML = prettyPrintOne(_textUtils2.default.replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
 				this.innerHTML = template;
 				this.childNodes[0].innerHTML = coloredHTML;
 				this.appendTitle(this.getAttribute("file-name"));
 			}
 		}, {
-			key: 'attachedCallback',
-			value: function attachedCallback() {}
-		}, {
-			key: 'attributeChangedCallback',
-			value: function attributeChangedCallback(attrName, oldVal, newVal) {}
-		}, {
-			key: 'replaceText',
-			value: function replaceText(str) {
-				var str1 = String(str);
-				return str1.replace(/\n/g, "<br/>");
-			}
-		}, {
-			key: 'appendTitle',
+			key: "appendTitle",
 			value: function appendTitle(text) {
 				if (text) {
 					var titleNode = document.createElement("div");
@@ -744,7 +751,18 @@
 
 		_createClass(AzSlideElement, [{
 			key: "createdCallback",
-			value: function createdCallback() {
+			value: function createdCallback() {}
+		}, {
+			key: "attachedCallback",
+			value: function attachedCallback() {
+				this.render();
+			}
+		}, {
+			key: "attributeChangedCallback",
+			value: function attributeChangedCallback(attrName, oldVal, newVal) {}
+		}, {
+			key: "render",
+			value: function render() {
 				var rx = this.getAttribute("rx");
 				var ry = this.getAttribute("ry");
 				var rz = this.getAttribute("rz");
@@ -760,12 +778,6 @@
 				//console.log("Transformation : " + this.transformations.transform);
 				_cssUtils2.default.applyTransform(this, "translate(-50%,-50%) " + this.transformations.transform);
 			}
-		}, {
-			key: "attachedCallback",
-			value: function attachedCallback() {}
-		}, {
-			key: "attributeChangedCallback",
-			value: function attributeChangedCallback(attrName, oldVal, newVal) {}
 		}, {
 			key: "moveTo",
 			value: function moveTo() {
@@ -930,6 +942,58 @@
 	}();
 
 	exports.default = CssUtils;
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var TextUtils = function () {
+		function TextUtils() {
+			_classCallCheck(this, TextUtils);
+		}
+
+		_createClass(TextUtils, null, [{
+			key: "replaceSpaces",
+			value: function replaceSpaces(str) {
+				var str1 = String(str);
+				return str1.replace(/\n/g, "<br/>");
+			}
+		}]);
+
+		return TextUtils;
+	}();
+
+	exports.default = TextUtils;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	PR['registerLangHandler'](
+	    PR['createSimpleLexer'](
+	        [
+	         // Whitespace
+	         [PR['PR_PLAIN'],       /^[\t\n\r \xA0]+/, null, '\t\n\r \xA0']
+	        ],
+	        [
+	         
+	         [PR['PR_COMMENT'],     /^\/(?:\/.*|\*(?:\/|\**[^*/])*(?:\*+\/?)?)/],
+			 [PR['PR_STRING'], /^\w+\.\w+(\.\w+)?/],
+			 [PR['PR_KEYWORD'], /^[-\w]+/],
+			 [PR['PR_TYPE'],        /^[│─\|└]/],
+	         [PR['PR_TYPE'],        /^\.\.\./]
+	        ]),
+	    ['tree']);
 
 /***/ }
 /******/ ]);
