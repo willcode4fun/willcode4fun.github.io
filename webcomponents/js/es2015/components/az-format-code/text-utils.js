@@ -1,6 +1,3 @@
-export default class TextUtils{
-	static replaceSpaces(str) {
-		let str1 = String(str);
-		return str1.replace(/\n/g,"<br/>");
-	};
-}
+export default function replaceSpaces(str) {
+	return String(str).replace(/\n/g,"<br/>");
+};

@@ -51,17 +51,23 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _textUtils = __webpack_require__(16);
+	__webpack_require__(8);
 
-	var _textUtils2 = _interopRequireDefault(_textUtils);
+	__webpack_require__(19);
+
+	__webpack_require__(17);
 
 	__webpack_require__(2);
 
-	__webpack_require__(6);
+	__webpack_require__(20);
+
+	var _textUtils = __webpack_require__(18);
+
+	var _textUtils2 = _interopRequireDefault(_textUtils);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -71,11 +77,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(8);
-	__webpack_require__(17);
-
-
-	var template = __webpack_require__(9);
+	var template = '<div class="code-title"></div><pre class="prettyprint"></pre>';
 
 	var FormatCodeElement = function (_HTMLElement) {
 		_inherits(FormatCodeElement, _HTMLElement);
@@ -87,32 +89,31 @@
 		}
 
 		_createClass(FormatCodeElement, [{
-			key: "createdCallback",
+			key: 'createdCallback',
 			value: function createdCallback() {}
 		}, {
-			key: "attachedCallback",
+			key: 'attachedCallback',
 			value: function attachedCallback() {
 				this.render();
 			}
 		}, {
-			key: "attributeChangedCallback",
-			value: function attributeChangedCallback(attrName, oldVal, newVal) {}
+			key: 'attributeChangedCallback',
+			value: function attributeChangedCallback(attrName, oldVal, newVal) {
+				this.render();
+			}
 		}, {
-			key: "render",
+			key: 'render',
 			value: function render() {
-				var coloredHTML = prettyPrintOne(_textUtils2.default.replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
+				var coloredHTML = prettyPrintOne((0, _textUtils2.default)(this.innerHTML.trim()), this.getAttribute("lang"));
 				this.innerHTML = template;
-				this.childNodes[0].innerHTML = coloredHTML;
+				this.lastChild.innerHTML = coloredHTML;
 				this.appendTitle(this.getAttribute("file-name"));
 			}
 		}, {
-			key: "appendTitle",
+			key: 'appendTitle',
 			value: function appendTitle(text) {
 				if (text) {
-					var titleNode = document.createElement("div");
-					titleNode.className = "code-title";
-					titleNode.appendChild(document.createTextNode(text));
-					this.insertBefore(titleNode, this.firstChild);
+					this.firstChild.appendChild(document.createTextNode(text));
 				}
 			}
 		}]);
@@ -473,46 +474,8 @@
 
 
 /***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(7);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./sunburst.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./sunburst.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "/* Pretty printing styles. Used with prettify.js. */\r\n/* Vim sunburst theme by David Leibovic */\r\n\r\naz-format-code .str, code .str { color: #65B042; } /* string  - green */\r\naz-format-code .kwd, code .kwd { color: #E28964; } /* keyword - dark pink */\r\naz-format-code .com, code .com { color: #AEAEAE; font-style: italic; } /* comment - gray */\r\naz-format-code .typ, code .typ { color: #89bdff; } /* type - light blue */\r\naz-format-code .lit, code .lit { color: #3387CC; } /* literal - blue */\r\naz-format-code .pun, code .pun { color: #fff; } /* punctuation - white */\r\naz-format-code .pln, code .pln { color: #fff; } /* plaintext - white */\r\naz-format-code .tag, code .tag { color: #89bdff; } /* html/xml tag    - light blue */\r\naz-format-code .atn, code .atn { color: #bdb76b; } /* html/xml attribute name  - khaki */\r\naz-format-code .atv, code .atv { color: #65B042; } /* html/xml attribute value - green */\r\naz-format-code .dec, code .dec { color: #3387CC; } /* decimal - blue */\r\n\r\npre.prettyprint, code.prettyprint {\r\n\tbackground-color: #000;\r\n\t-moz-border-radius: 8px;\r\n\t-webkit-border-radius: 8px;\r\n\t-o-border-radius: 8px;\r\n\t-ms-border-radius: 8px;\r\n\t-khtml-border-radius: 8px;\r\n\tborder-radius: 8px;\r\n}\r\n\r\npre.prettyprint {\r\n\twidth: 95%;\r\n\tmargin: 1em auto;\r\n\tpadding: 1em;\r\n\twhite-space: pre-wrap;\r\n}\r\n\r\n\r\n/* Specify class=linenums on a pre to get line numbering */\r\nol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */\r\nli.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }\r\n/* Alternate shading for lines */\r\nli.L1,li.L3,li.L5,li.L7,li.L9 { }\r\n\r\n@media print {\r\n  az-format-code .str, code .str { color: #060; }\r\n  az-format-code .kwd, code .kwd { color: #006; font-weight: bold; }\r\n  az-format-code .com, code .com { color: #600; font-style: italic; }\r\n  az-format-code .typ, code .typ { color: #404; font-weight: bold; }\r\n  az-format-code .lit, code .lit { color: #044; }\r\n  az-format-code .pun, code .pun { color: #440; }\r\n  az-format-code .pln, code .pln { color: #000; }\r\n  az-format-code .tag, code .tag { color: #006; font-weight: bold; }\r\n  az-format-code .atn, code .atn { color: #404; }\r\n  az-format-code .atv, code .atv { color: #060; }\r\n}", ""]);
-
-	// exports
-
-
-/***/ },
+/* 6 */,
+/* 7 */,
 /* 8 */
 /***/ function(module, exports) {
 
@@ -565,12 +528,7 @@
 
 
 /***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	module.exports = "<pre class=\"prettyprint\"></pre>";
-
-/***/ },
+/* 9 */,
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -944,7 +902,27 @@
 	exports.default = CssUtils;
 
 /***/ },
-/* 16 */
+/* 16 */,
+/* 17 */
+/***/ function(module, exports) {
+
+	PR.registerLangHandler(
+	    PR.createSimpleLexer(
+	        [ 
+	          // Whitespace
+	          [PR.PR_PLAIN,         /^\s+/, null, ' \r\n\t\xA0']
+	        ],
+	        [ // fallthroughStylePatterns
+			  [PR.PR_KEYWORD,       /^(?:npm|webpack)\b/i, null],
+			  [PR.PR_STRING,       /^(?:install)\b/i, null],
+			  [PR.PR_LITERAL,       /^\-\-[a-z0-9\-]*\b/i, null],
+			  [PR.PR_LITERAL,       /^\-[a-z0-9\-]\b/i, null]
+	          
+	        ]),
+	    ['cmd']);
+
+/***/ },
+/* 18 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -952,31 +930,13 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var TextUtils = function () {
-		function TextUtils() {
-			_classCallCheck(this, TextUtils);
-		}
-
-		_createClass(TextUtils, null, [{
-			key: "replaceSpaces",
-			value: function replaceSpaces(str) {
-				var str1 = String(str);
-				return str1.replace(/\n/g, "<br/>");
-			}
-		}]);
-
-		return TextUtils;
-	}();
-
-	exports.default = TextUtils;
+	exports.default = replaceSpaces;
+	function replaceSpaces(str) {
+		return String(str).replace(/\n/g, "<br/>");
+	};
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports) {
 
 	PR['registerLangHandler'](
@@ -994,6 +954,46 @@
 	         [PR['PR_TYPE'],        /^\.\.\./]
 	        ]),
 	    ['tree']);
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(21);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./sunburst.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./sunburst.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/* Pretty printing styles. Used with prettify.js. */\r\n/* Vim sunburst theme by David Leibovic */\r\n\r\naz-format-code .str, code .str { color: #65B042; } /* string  - green */\r\naz-format-code .kwd, code .kwd { color: #E28964; } /* keyword - dark pink */\r\naz-format-code .com, code .com { color: #AEAEAE; font-style: italic; } /* comment - gray */\r\naz-format-code .typ, code .typ { color: #89bdff; } /* type - light blue */\r\naz-format-code .lit, code .lit { color: #3387CC; } /* literal - blue */\r\naz-format-code .pun, code .pun { color: #fff; } /* punctuation - white */\r\naz-format-code .pln, code .pln { color: #fff; } /* plaintext - white */\r\naz-format-code .tag, code .tag { color: #89bdff; } /* html/xml tag    - light blue */\r\naz-format-code .atn, code .atn { color: #bdb76b; } /* html/xml attribute name  - khaki */\r\naz-format-code .atv, code .atv { color: #65B042; } /* html/xml attribute value - green */\r\naz-format-code .dec, code .dec { color: #3387CC; } /* decimal - blue */\r\n\r\npre.prettyprint, code.prettyprint {\r\n\tbackground-color: #000;\r\n\t-moz-border-radius: 8px;\r\n\t-webkit-border-radius: 8px;\r\n\t-o-border-radius: 8px;\r\n\t-ms-border-radius: 8px;\r\n\t-khtml-border-radius: 8px;\r\n\tborder-radius: 8px;\r\n}\r\n\r\npre.prettyprint {\r\n\twidth: 95%;\r\n\tmargin: 1em auto;\r\n\tpadding: 1em;\r\n\twhite-space: pre-wrap;\r\n}\r\n\r\n\r\n/* Specify class=linenums on a pre to get line numbering */\r\nol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */\r\nli.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }\r\n/* Alternate shading for lines */\r\nli.L1,li.L3,li.L5,li.L7,li.L9 { }\r\n\r\n@media print {\r\n  az-format-code .str, code .str { color: #060; }\r\n  az-format-code .kwd, code .kwd { color: #006; font-weight: bold; }\r\n  az-format-code .com, code .com { color: #600; font-style: italic; }\r\n  az-format-code .typ, code .typ { color: #404; font-weight: bold; }\r\n  az-format-code .lit, code .lit { color: #044; }\r\n  az-format-code .pun, code .pun { color: #440; }\r\n  az-format-code .pln, code .pln { color: #000; }\r\n  az-format-code .tag, code .tag { color: #006; font-weight: bold; }\r\n  az-format-code .atn, code .atn { color: #404; }\r\n  az-format-code .atv, code .atv { color: #060; }\r\n}", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

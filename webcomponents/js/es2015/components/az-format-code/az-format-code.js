@@ -1,13 +1,11 @@
-require("prettify/prettify.js");
-require("prettify/lang-tree.js");
-require("prettify/lang-cmd.js");
-import TextUtils from "./text-utils";
-
-
+import 'prettify/prettify.js';
+import 'prettify/lang-tree.js';
+import 'prettify/lang-cmd.js';
 import 'prettify/prettify.css';
-import './sunburst.css';
+import 'prettify/styles/sunburst.css';
+import replaceSpaces from "./text-utils";
 
-const template = require("html!./template.html");
+const template = `<div class="code-title"></div><pre class="prettyprint"></pre>`;
 
 class FormatCodeElement extends HTMLElement {
 
@@ -15,21 +13,18 @@ class FormatCodeElement extends HTMLElement {
 	
 	attachedCallback() { this.render(); };
 	
-	attributeChangedCallback(attrName, oldVal, newVal) { };
+	attributeChangedCallback(attrName, oldVal, newVal) { this.render(); };
 	
 	render() {
-		const coloredHTML = prettyPrintOne(TextUtils.replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
+		const coloredHTML = prettyPrintOne(replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
 		this.innerHTML = template;
-		this.childNodes[0].innerHTML = coloredHTML;
+		this.lastChild.innerHTML = coloredHTML;
 		this.appendTitle(this.getAttribute("file-name"));
 	}
 	
 	appendTitle(text){
 		if(text) {
-			var titleNode = document.createElement("div");
-			titleNode.className = "code-title";
-			titleNode.appendChild(document.createTextNode(text));
-			this.insertBefore(titleNode, this.firstChild);
+			this.firstChild.appendChild(document.createTextNode(text));
 		}
 	}
 }
