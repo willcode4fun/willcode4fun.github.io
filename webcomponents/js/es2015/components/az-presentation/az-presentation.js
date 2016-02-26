@@ -3,15 +3,14 @@ import './presentation.css';
 
 class AzPresentationElement extends HTMLElement {
 
-	constructor(){
-		super();
-		this.currentActive = 'start';
-	};
-
 	createdCallback() {
+		this.currentActive = 'start';
 		this.bindKeyEvents();
-		
 	};
+	
+	attachedCallback() { };
+	
+	attributeChangedCallback(attrName, oldVal, newVal) { };
 	
 	bindKeyEvents() {
 		let self = this;
@@ -34,33 +33,23 @@ class AzPresentationElement extends HTMLElement {
 			};
 		}
 	}
-	showSlide(slideId){
-		console.log("showSlide:"+slideId);
-		if(slideId){
-			document.getElementById(slideId).moveTo();
-		}
-	}
 	nextSlide(){
 		this.showSlide(this.currentActive.getAttribute("next"));
 	};
 	previousSlide(){
 		this.showSlide(document.querySelector('[next='+this.currentActive.id+']').id);
 	};
-	
 	nextDetail(){
 		this.showSlide(this.currentActive.getAttribute("detail"));
 	};
-	
 	previousDetail(){
 		this.showSlide(document.querySelector('[detail='+this.currentActive.id+']').id);
 	};
-	
-	
-	attachedCallback() {
-	};
-	
-	attributeChangedCallback(attrName, oldVal, newVal) {
-
-	};
+	showSlide(slideId){
+		console.log("showSlide:"+slideId);
+		if(slideId){
+			document.getElementById(slideId).moveTo();
+		}
+	}
 }
 document.registerElement('az-presentation', AzPresentationElement);

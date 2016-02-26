@@ -16,6 +16,7 @@ module.exports = {
     },
 	resolve: {
         alias: {
+			utilities: path.join(__dirname,'es2015/utilities'),
             prettify: path.join(__dirname,'lib/google-code-prettify'),
 			webcomponents: path.join(__dirname,'lib/webcomponents/webcomponents.js')
         }

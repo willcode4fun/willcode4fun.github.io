@@ -124,7 +124,8 @@ document.registerElement('az-format-code', FormatCodeElement);
     
     
     <az-slide  next="slide3" detail="detail1" id="codesample" tx="1000" rz="45">
-        <az-format-code file-name="CollaborateurRowMapper.java">package fr.allianz.tc.dpi.core.mapper;
+        <az-format-code file-name="CollaborateurRowMapper.java">
+package fr.allianz.tc.dpi.core.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -151,42 +152,54 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
     SLIDE 3
     </az-slide>
     
-    <az-slide id="slide4" next="slide5"  tx="3000">
-    ES2015 
-	Support
-	
-	Transpile
-	
-	REPL 
-	http://babeljs.io/repl/
-	Features 
-	https://babeljs.io/docs/learn-es2015/#ecmascript-6-features
-	<ul>
-		<li>Classes</li>
-		<li>Template Strings (interpolated string literals)</li>
-		<li>Arrows</li>
-		<li>let / const</li>
-		<li>Map & Set</li>
-		<li>Promise</li>
-	</ul>
+    <az-slide id="slide4" next="slide5" detail="slide4-1" tx="3000">
+		<h1>ES2015 </h1>
+		<p>
+			Brower Support<BR/>
+			Transpile<BR/>
+			
+			REPL :<BR/>
+			http://babeljs.io/repl/<BR/>
+			Features :<BR/>
+			https://babeljs.io/docs/learn-es2015/#ecmascript-6-features
+			<ul>
+				<li>Classes</li>
+				<li>Template Strings (interpolated string literals)</li>
+				<li>Arrows</li>
+				<li>let / const</li>
+				<li>Map & Set</li>
+				<li>Promise</li>
+			</ul>
+		</p>
     </az-slide>
-    
+	<az-slide id="slide4-1"  tx="3000" tY="1000" >
+		Brower Support<BR/>
+	</az-slide>
+	
     <az-slide id="slide5" next="fin"  tx="4000" scale="1.2">
-    Webcomponents 
-	Support
-	Polyfill
-	Features
+    Webcomponents <BR/>
+	Support<BR/>
+	Polyfill<BR/>
+	Features<BR/>
 	<ul>
 		<li>Custom Elements</li>
 		<li>Shadow dom</li>
 		<li>HTML Imports</li>
 		<li>HTML Templates</li>
 	</ul>
-	Libraries
+	Libraries<BR/>
     </az-slide>
     
     <az-slide id="fin" next="start" detail="detail2"  tx="5000">
-    THIS IS THE LAST SLIDE
+    
+	<az-format-code file-name="Destructuring : assignment">
+let a=0, b=1;
+console.log(`a=${a} b=${b}`); // a=0 b=1
+
+[a,b] = [b,a]; 
+
+console.log(`a=${a} b=${b}`); // a=1 b=0	
+	</az-format-code>
     </az-slide>
     
     <az-slide id="detail2" tx="5000" ty="600" scale="0.7">

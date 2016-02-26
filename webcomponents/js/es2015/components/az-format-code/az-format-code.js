@@ -3,7 +3,7 @@ import 'prettify/lang-tree.js';
 import 'prettify/lang-cmd.js';
 import 'prettify/prettify.css';
 import 'prettify/styles/sunburst.css';
-import replaceSpaces from "./text-utils";
+import replaceSpaces from "utilities/text-utils";
 
 const template = `<div class="code-title"></div><pre class="prettyprint"></pre>`;
 

@@ -21,7 +21,7 @@ export default class TransformBuilder{
 	translate(x,y,z){
 		//if(x && y && z){
 			this.transform += `translate3d(${x?x:'0'}px, ${y?y:'0'}px, ${z?z:'0'}px)`;
-			this.reverseTransform = `translate3d(${-1*x}px, ${-1*y}px, ${-1*z}px) `+ this.reverseTransform;
+			this.reverseTransform = `translate3d(${-1*(x?x:'0')}px, ${-1*(y?y:'0')}px, ${-1*(z?z:'0')}px) `+ this.reverseTransform;
 		//}
 		return this;
 	}
