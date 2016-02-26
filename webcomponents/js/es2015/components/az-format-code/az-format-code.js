@@ -1,6 +1,9 @@
 require("prettify/prettify.js");
 require("prettify/lang-tree.js");
+require("prettify/lang-cmd.js");
 import TextUtils from "./text-utils";
+
+
 import 'prettify/prettify.css';
 import './sunburst.css';
 
