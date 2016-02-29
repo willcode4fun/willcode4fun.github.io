@@ -50,6 +50,7 @@ az-slide {
     -o-transition:      opacity 1s;
     transition:         opacity 1s;
 }
+
 az-slide.active{
 	opacity: 1;
 	z-index: 100;

@@ -176,7 +176,7 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
 		Brower Support<BR/>
 	</az-slide>
 	
-    <az-slide id="slide5" next="fin"  tx="4000" scale="1.2">
+    <az-slide id="slide5" next="slide6"  tx="4000" scale="1.2">
     Webcomponents <BR/>
 	Support<BR/>
 	Polyfill<BR/>
@@ -190,7 +190,7 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
 	Libraries<BR/>
     </az-slide>
     
-    <az-slide id="fin" next="start" detail="detail2"  tx="5000">
+    <az-slide id="slide6" next="fin"  tx="5000">
     
 	<az-format-code file-name="Destructuring : assignment">
 let a=0, b=1;
@@ -200,12 +200,84 @@ console.log(`a=${a} b=${b}`); // a=0 b=1
 
 console.log(`a=${a} b=${b}`); // a=1 b=0	
 	</az-format-code>
+	
+	<az-format-code file-name="Destructuring : parameters">
+function test(p1, p2){
+  console.log(`p1=${p1} p2=${p2}`);
+}
+
+test(8, 9); // p1=8 p2=9
+
+let params = [10, 11];
+test(...params); // p1=10 p2=11
+	</az-format-code>
+	
+	
+	<az-format-code file-name="Destructuring + default parameters = named parameters !">
+function describe({name: x, job: y = "boulanger"}) {
+  console.log(`${x} est ${y}`);
+}
+describe({name: "Paul"}); // Paul est boulanger
+
+describe({name: "Jean", job : "charcutier"}); // Jean est charcutier
+	</az-format-code>
+	
+	
     </az-slide>
     
-    <az-slide id="detail2" tx="5000" ty="600" scale="0.7">
-    THANKS
+	<az-slide id="fin" next="start" detail="detail2"  tx="6000">
+		<az-format-code file-name="lib/text-utils.js">
+export default function clean(str){
+	return str.trim();
+}
+		</az-format-code>
+		<az-format-code file-name="lib/math-utils.js">
+const PI = 3.1416;
+export function plusun = n => n+1;
+export function moinsun(n){	return n-1; }
+export class MathBuilder{
+	constructor(n) {	this.number = n; }
+	incPI() { this.number += PI; return this;}
+	build() { return this.number; }
+	static of(n){return new MathBuilder(n);}
+}
+		</az-format-code>
+		
+		<az-format-code file-name="Import">
+// 
+		</az-format-code>
+    </az-slide>
+	
+	
+    <az-slide id="detail2" detail="detail3" tx="5000" ty="600" scale="0.7">
+    	<az-format-code file-name="Arrow functions : curryfication example">
+function plusX(x) { return n => n+x; };
+
+const plusUn = plusX( 1 );
+
+console.log([1,2,3].map( plusUn ));  // [2,3,4]
+	</az-format-code>
     </az-slide>
     
+    
+    <az-slide id="detail3" tx="5000" ty="800" scale="0.7">
+    	<az-format-code file-name="Classes">
+class Animal{
+	static race() { return "Animal"; }
+}
+class Dog extends Animal{
+	constructor(name) {	super();this._name = name; }
+	sit() { console.log(`Sit ${this._name} !`);}
+	static race() { return "DOG("+super.race()+")";	}
+}
+let rex = new Dog('Rex');
+rex.sit();
+console.log(`${rex._name} is a ${Dog.race()}`);
+	</az-format-code>
+    </az-slide>
+    </az-slide>
+	
+	
 </az-presentation>
 </body>
 </html>
