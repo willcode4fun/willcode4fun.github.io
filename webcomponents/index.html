@@ -192,7 +192,7 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
     
     <az-slide id="slide6" next="fin"  tx="5000">
     
-	<az-format-code file-name="Destructuring : assignment">
+	<az-format-code file-name="Destructuring : list matching">
 let a=0, b=1;
 console.log(`a=${a} b=${b}`); // a=0 b=1
 
@@ -200,7 +200,7 @@ console.log(`a=${a} b=${b}`); // a=0 b=1
 
 console.log(`a=${a} b=${b}`); // a=1 b=0	
 	</az-format-code>
-	
+
 	<az-format-code file-name="Destructuring : parameters">
 function test(p1, p2){
   console.log(`p1=${p1} p2=${p2}`);
@@ -221,7 +221,6 @@ describe({name: "Paul"}); // Paul est boulanger
 
 describe({name: "Jean", job : "charcutier"}); // Jean est charcutier
 	</az-format-code>
-	
 	
     </az-slide>
     
@@ -250,6 +249,20 @@ export class MathBuilder{
 	
 	
     <az-slide id="detail2" detail="detail3" tx="5000" ty="600" scale="0.7">
+	
+			<az-format-code file-name="Arrow functions" lang="js">
+const numbers = [1,2,4,7,9,10,6,8,3,5];
+
+numbers
+  .map(n => n + 3)   // [4,5,7,10,12,13,9,11,6,8]
+  
+  .sort((a, b) => a>b)   // [4,5,6,7,8,9,10,11,12,13]
+  
+  .filter(n => n%2 === 0)   // [4,6,8,10,12]
+  
+  .forEach(n => console.log(n));   // 4 6 8 10 12
+	</az-format-code>
+	
     	<az-format-code file-name="Arrow functions : curryfication example">
 function plusX(x) { return n => n+x; };
 

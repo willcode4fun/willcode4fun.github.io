@@ -16,7 +16,7 @@ class FormatCodeElement extends HTMLElement {
 	attributeChangedCallback(attrName, oldVal, newVal) { this.render(); };
 	
 	render() {
-		const coloredHTML = prettyPrintOne(replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
+		const coloredHTML = PR.prettyPrintOne(replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
 		this.innerHTML = template;
 		this.lastChild.innerHTML = coloredHTML;
 		this.appendTitle(this.getAttribute("file-name"));
