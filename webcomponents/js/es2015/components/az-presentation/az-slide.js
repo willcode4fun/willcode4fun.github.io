@@ -8,7 +8,7 @@ class AzSlideElement extends HTMLElement {
 	
 	attachedCallback() { this.render();	};
 	
-	attributeChangedCallback(attrName, oldVal, newVal) { this.render(); };
+	attributeChangedCallback(attrName, oldVal, newVal) { };
 	
 	render() {
 		const attrs = attributeMap(this);

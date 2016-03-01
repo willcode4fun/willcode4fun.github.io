@@ -14,10 +14,15 @@ class AzPresentationElement extends HTMLElement {
 	
 	bindKeyEvents() {
 		let self = this;
-		window.addEventListener('keypress', function(evt) {
-			evt = evt || window.event;
-			if(self.move(evt.keyCode)){
-				evt.preventDefault();
+		window.addEventListener('keydown', function(event) {
+			//console.log("keydown:"+event);
+			event = event || window.event;
+			var code = event.keyCode;
+			if (event.charCode && code == 0){
+				code = event.charCode;
+			}
+			if(self.move(code)){
+				event.preventDefault();
 			}
 		}, false);
 	};

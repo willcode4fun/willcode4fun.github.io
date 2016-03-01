@@ -2,7 +2,6 @@ body {
     height: 100%;
     overflow: hidden;
 }
-
 az-presentation {
 	position: absolute;
     display: block;
@@ -57,6 +56,8 @@ az-slide.active{
 }
 
 az-slide > az-format-code{
+	margin-top : -25px;
+    display: block;
 	font-family: Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
 	font-weight:bold;
 	font-size: 16px;

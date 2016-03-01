@@ -85,39 +85,37 @@ require("./es2015/components/az-presentation/az-presentation.js");
     
     <az-slide id="setup-step3" ty="400" >       
 <az-format-code file-name="js\es2015\components\az-format-code\az-format-code.js">
-require("prettify/prettify.js");
+import 'prettify/prettify.js';
+import 'prettify/lang-tree.js';
+import 'prettify/lang-cmd.js';
 import 'prettify/prettify.css';
-import './sunburst.css';
-const template = require("html!./template.html");
+import 'prettify/styles/sunburst.css';
+import replaceSpaces from "utilities/text-utils";
+
+const template = `&lt;div class="code-title">&lt;/div>&lt;pre class="prettyprint">&lt;/pre>`;
 
 class FormatCodeElement extends HTMLElement {
 
-    createdCallback() {
-        const coloredHTML = prettyPrintOne(this.replaceText(this.innerHTML.trim()), this.getAttribute("lang"));
-        this.innerHTML = template;
-        this.childNodes[0].innerHTML = coloredHTML;
-        this.appendTitle(this.getAttribute("file-name"));
-    };
+  createdCallback() { };
     
-    attachedCallback() { };
+  attachedCallback() { this.render(); };
     
-    attributeChangedCallback(attrName, oldVal, newVal) { };
+  attributeChangedCallback(attrName, oldVal, newVal) { this.render(); };
     
-    replaceText(str) {
-        let str1 = String(str);
-        return str1.replace(/\n/g,"<br/>");
-    };
-    
-    appendTitle(text){
-        if(text) {
-            var titleNode = document.createElement("div");
-            titleNode.className = "code-title";
-            titleNode.appendChild(document.createTextNode(text));
-            this.insertBefore(titleNode, this.firstChild);
-        }
+  render() {
+    const coloredHTML = PR.prettyPrintOne(replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
+    this.innerHTML = template;
+    this.lastChild.innerHTML = coloredHTML;
+    this.appendTitle(this.getAttribute("file-name"));
+  }
+  
+  appendTitle(text){
+    if(text) {
+      this.firstChild.appendChild(document.createTextNode(text));
     }
+  }
 }
-document.registerElement('az-format-code', FormatCodeElement);  
+document.registerElement('az-format-code', FormatCodeElement);
 </az-format-code>   
     
     </az-slide>
@@ -153,55 +151,55 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
     </az-slide>
     
     <az-slide id="slide4" next="slide5" detail="slide4-1" tx="3000">
-		<h1>ES2015 </h1>
-		<p>
-			Brower Support<BR/>
-			Transpile<BR/>
-			
-			REPL :<BR/>
-			http://babeljs.io/repl/<BR/>
-			Features :<BR/>
-			https://babeljs.io/docs/learn-es2015/#ecmascript-6-features
-			<ul>
-				<li>Classes</li>
-				<li>Template Strings (interpolated string literals)</li>
-				<li>Arrows</li>
-				<li>let / const</li>
-				<li>Map & Set</li>
-				<li>Promise</li>
-			</ul>
-		</p>
+        <h1>ES2015 </h1>
+        <p>
+            Brower Support<BR/>
+            Transpile<BR/>
+            
+            REPL :<BR/>
+            http://babeljs.io/repl/<BR/>
+            Features :<BR/>
+            https://babeljs.io/docs/learn-es2015/#ecmascript-6-features
+            <ul>
+                <li>Classes</li>
+                <li>Template Strings (interpolated string literals)</li>
+                <li>Arrows</li>
+                <li>let / const</li>
+                <li>Map & Set</li>
+                <li>Promise</li>
+            </ul>
+        </p>
     </az-slide>
-	<az-slide id="slide4-1"  tx="3000" tY="1000" >
-		Brower Support<BR/>
-	</az-slide>
-	
+    <az-slide id="slide4-1"  tx="3000" tY="1000" >
+        Brower Support<BR/>
+    </az-slide>
+    
     <az-slide id="slide5" next="slide6"  tx="4000" scale="1.2">
     Webcomponents <BR/>
-	Support<BR/>
-	Polyfill<BR/>
-	Features<BR/>
-	<ul>
-		<li>Custom Elements</li>
-		<li>Shadow dom</li>
-		<li>HTML Imports</li>
-		<li>HTML Templates</li>
-	</ul>
-	Libraries<BR/>
+    Support<BR/>
+    Polyfill<BR/>
+    Features<BR/>
+    <ul>
+        <li>Custom Elements</li>
+        <li>Shadow dom</li>
+        <li>HTML Imports</li>
+        <li>HTML Templates</li>
+    </ul>
+    Libraries<BR/>
     </az-slide>
     
     <az-slide id="slide6" next="fin"  tx="5000">
     
-	<az-format-code file-name="Destructuring : list matching">
+    <az-format-code file-name="Destructuring : list matching">
 let a=0, b=1;
 console.log(`a=${a} b=${b}`); // a=0 b=1
 
 [a,b] = [b,a]; 
 
-console.log(`a=${a} b=${b}`); // a=1 b=0	
-	</az-format-code>
+console.log(`a=${a} b=${b}`); // a=1 b=0    
+    </az-format-code>
 
-	<az-format-code file-name="Destructuring : parameters">
+    <az-format-code file-name="Destructuring : parameters">
 function test(p1, p2){
   console.log(`p1=${p1} p2=${p2}`);
 }
@@ -210,47 +208,47 @@ test(8, 9); // p1=8 p2=9
 
 let params = [10, 11];
 test(...params); // p1=10 p2=11
-	</az-format-code>
-	
-	
-	<az-format-code file-name="Destructuring + default parameters = named parameters !">
+    </az-format-code>
+    
+    
+    <az-format-code file-name="Destructuring + default parameters = named parameters !">
 function describe({name: x, job: y = "boulanger"}) {
   console.log(`${x} est ${y}`);
 }
 describe({name: "Paul"}); // Paul est boulanger
 
 describe({name: "Jean", job : "charcutier"}); // Jean est charcutier
-	</az-format-code>
-	
+    </az-format-code>
+    
     </az-slide>
     
-	<az-slide id="fin" next="start" detail="detail2"  tx="6000">
-		<az-format-code file-name="lib/text-utils.js">
+    <az-slide id="fin" next="start" detail="detail2"  tx="6000">
+        <az-format-code file-name="lib/text-utils.js">
 export default function clean(str){
-	return str.trim();
+    return str.trim();
 }
-		</az-format-code>
-		<az-format-code file-name="lib/math-utils.js">
+        </az-format-code>
+        <az-format-code file-name="lib/math-utils.js">
 const PI = 3.1416;
 export function plusun = n => n+1;
-export function moinsun(n){	return n-1; }
+export function moinsun(n){ return n-1; }
 export class MathBuilder{
-	constructor(n) {	this.number = n; }
-	incPI() { this.number += PI; return this;}
-	build() { return this.number; }
-	static of(n){return new MathBuilder(n);}
+    constructor(n) {    this.number = n; }
+    incPI() { this.number += PI; return this;}
+    build() { return this.number; }
+    static of(n){return new MathBuilder(n);}
 }
-		</az-format-code>
-		
-		<az-format-code file-name="Import">
+        </az-format-code>
+        
+        <az-format-code file-name="Import">
 // 
-		</az-format-code>
+        </az-format-code>
     </az-slide>
-	
-	
+    
+    
     <az-slide id="detail2" detail="detail3" tx="5000" ty="600" scale="0.7">
-	
-			<az-format-code file-name="Arrow functions" lang="js">
+    
+            <az-format-code file-name="Arrow functions" lang="js">
 const numbers = [1,2,4,7,9,10,6,8,3,5];
 
 numbers
@@ -261,36 +259,36 @@ numbers
   .filter(n => n%2 === 0)   // [4,6,8,10,12]
   
   .forEach(n => console.log(n));   // 4 6 8 10 12
-	</az-format-code>
-	
-    	<az-format-code file-name="Arrow functions : curryfication example">
+    </az-format-code>
+    
+        <az-format-code file-name="Arrow functions : curryfication example">
 function plusX(x) { return n => n+x; };
 
 const plusUn = plusX( 1 );
 
 console.log([1,2,3].map( plusUn ));  // [2,3,4]
-	</az-format-code>
+    </az-format-code>
     </az-slide>
     
     
     <az-slide id="detail3" tx="5000" ty="800" scale="0.7">
-    	<az-format-code file-name="Classes">
+        <az-format-code file-name="Classes">
 class Animal{
-	static race() { return "Animal"; }
+    static race() { return "Animal"; }
 }
 class Dog extends Animal{
-	constructor(name) {	super();this._name = name; }
-	sit() { console.log(`Sit ${this._name} !`);}
-	static race() { return "DOG("+super.race()+")";	}
+    constructor(name) { super();this._name = name; }
+    sit() { console.log(`Sit ${this._name} !`);}
+    static race() { return "DOG("+super.race()+")"; }
 }
 let rex = new Dog('Rex');
 rex.sit();
 console.log(`${rex._name} is a ${Dog.race()}`);
-	</az-format-code>
+    </az-format-code>
     </az-slide>
     </az-slide>
-	
-	
+    
+    
 </az-presentation>
 </body>
 </html>

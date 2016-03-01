@@ -1434,7 +1434,8 @@ var prettyPrint;
   registerLangHandler(sourceDecorator({
           'keywords': JSCRIPT_KEYWORDS,
           'cStyleComments': true,
-          'regexLiterals': true
+          'regexLiterals': true,
+          'multilineStrings': true
         }), ['javascript', 'js', 'ts', 'typescript']);
   registerLangHandler(sourceDecorator({
           'keywords': COFFEE_KEYWORDS,
