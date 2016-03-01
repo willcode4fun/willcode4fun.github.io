@@ -83,15 +83,16 @@ az-slide > div.title {
 	font-weight:bold;
 	background-color: #777;
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: 5px;
+	box-shadow: 3px 3px #555;
     color: white;
     display: inline-block;
-    left: 12%;
+    left: -5%;
     padding: 1px 15px;
     position: relative;
     text-align: center;
     top: -12px;
-    width: 75%;
+    width: 95%;
 }
 
 
