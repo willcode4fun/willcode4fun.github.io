@@ -9,29 +9,45 @@
 </head>
 <body>
 <az-presentation>
-    <az-slide id="start" start next="setup" >
-    <p>Welcome!</p>
-    
-        <az-format-code file-name="This pretty print block is generated with ...">
-&lt;az-format-code file-name="This pretty print block is generated with ...">
-    &lt;az-format-code file-name="This pretty print block is generated with ...">
-        ... and so on !
-    &lt;/az-format-code>
-&lt;/az-format-code>
+    <az-slide id="start" start>
+		<div class="title">Prochainement dans vos Navigateurs...</div>
+   
+        <az-format-code file-name="let es2015 = javascript.next();">
+
+        </az-format-code>
+	
+	
+        <az-format-code file-name="WebComponent extends HTML">
+
         </az-format-code>
     
     </az-slide>
 
-    <az-slide id="setup" detail="setup-step2" next="codesample" >
-        <p>Setup ! ( + <img id="nodelogo" src ="https://nodejs.org/static/images/logos/nodejs-new-white-pantone.png" />) </p>
+    <az-slide>
+		<div class="title">npm install tout-ce-qu-il-faut </div>
+		
+        <az-format-code file-name="Download">
+let codeur = new Coder();
+
+let nav = new Coder().getNavigateurPrefere();
+
+nav.visit( "http://webcomponents.org/polyfills/" ).download( "Web components Polyfills" ); 
+
+nav.visit( "https://nodejs.org/en/download/" ).download( "Node.js" ); 
+
+codeur.use("Node.js").to( build() ).and( transpile(ES2015).to(ES5) );
+		</az-format-code>
+		
         <az-format-code file-name="cmd >" lang="cmd">
 npm install webpack -g
 npm install --save-dev babel-loader babel-preset-es2015 raw-loader html-loader script-loader style-loader css-loader
 webpack --progress --colors --watch
         </az-format-code>
-        
-        <az-format-code file-name="Arborescence" lang="tree">
+    </az-slide>
 
+    <az-slide>
+	  <div class="title">Arborescence proposée</div>
+        <az-format-code lang="tree">
 index.html
 css
 └─styles.css
@@ -51,7 +67,7 @@ js
         
     </az-slide>
     
-    <az-slide id="setup-step2" detail="setup-step3" ty="800" >      
+    <az-slide ty="800" >      
         <az-format-code file-name="js/webpack.config.js">
 path = require('path');
 module.exports = {
@@ -83,7 +99,7 @@ require("./es2015/components/az-presentation/az-presentation.js");
         </az-format-code>
     </az-slide>
     
-    <az-slide id="setup-step3" ty="400" >       
+    <az-slide ty="400" >       
 <az-format-code file-name="js\es2015\components\az-format-code\az-format-code.js">
 import 'prettify/prettify.js';
 import 'prettify/lang-tree.js';
@@ -121,7 +137,7 @@ document.registerElement('az-format-code', FormatCodeElement);
     </az-slide>
     
     
-    <az-slide  next="slide3" detail="detail1" id="codesample" tx="1000" rz="45">
+    <az-slide tx="1000" rz="45">
         <az-format-code file-name="CollaborateurRowMapper.java">
 package fr.allianz.tc.dpi.core.mapper;
 import java.sql.ResultSet;
@@ -139,18 +155,18 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
 }</az-format-code>
     </az-slide>
     
-    <az-slide id="detail1" detail="detail1_1" tx="600" ty="400" rz="45" scale="0.7">
+    <az-slide tx="600" ty="400" rz="45" scale="0.7">
     DETAIL 1
     </az-slide>
-    <az-slide id="detail1_1" tx="800" ty="500" rz="45" scale="0.7">
+    <az-slide tx="800" ty="500" rz="45" scale="0.7">
     DETAIL 1
     </az-slide>
     
-    <az-slide id="slide3" next="slide4"  tx="2000">
+    <az-slide tx="2000">
     SLIDE 3
     </az-slide>
     
-    <az-slide id="slide4" next="slide5" detail="slide4-1" tx="3000">
+    <az-slide tx="3000">
         <h1>ES2015 </h1>
         <p>
             Brower Support<BR/>
@@ -170,11 +186,11 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
             </ul>
         </p>
     </az-slide>
-    <az-slide id="slide4-1"  tx="3000" tY="1000" >
+    <az-slide  tx="3000" ty="1000" >
         Brower Support<BR/>
     </az-slide>
     
-    <az-slide id="slide5" next="slide6"  tx="4000" scale="1.2">
+    <az-slide  tx="4000" scale="1.2">
     Webcomponents <BR/>
     Support<BR/>
     Polyfill<BR/>
@@ -188,7 +204,7 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
     Libraries<BR/>
     </az-slide>
     
-    <az-slide id="slide6" next="fin"  tx="5000">
+    <az-slide tx="5000">
     
     <az-format-code file-name="Destructuring : list matching">
 let a=0, b=1;
@@ -222,7 +238,7 @@ describe({name: "Jean", job : "charcutier"}); // Jean est charcutier
     
     </az-slide>
     
-    <az-slide id="fin" next="start" detail="detail2"  tx="6000">
+    <az-slide tx="6000">
         <az-format-code file-name="lib/text-utils.js">
 export default function clean(str){
     return str.trim();
@@ -246,7 +262,7 @@ export class MathBuilder{
     </az-slide>
     
     
-    <az-slide id="detail2" detail="detail3" tx="5000" ty="600" scale="0.7">
+    <az-slide tx="5000" ty="600" scale="0.7">
     
             <az-format-code file-name="Arrow functions" lang="js">
 const numbers = [1,2,4,7,9,10,6,8,3,5];
@@ -271,21 +287,36 @@ console.log([1,2,3].map( plusUn ));  // [2,3,4]
     </az-slide>
     
     
-    <az-slide id="detail3" tx="5000" ty="800" scale="0.7">
-        <az-format-code file-name="Classes">
+    <az-slide tx="5000" ty="800" scale="0.7">
+        <az-format-code file-name="import class.partial as syntactic.sugar from 'OOP'">
 class Animal{
     static race() { return "Animal"; }
 }
 class Dog extends Animal{
     constructor(name) { super();this._name = name; }
     sit() { console.log(`Sit ${this._name} !`);}
-    static race() { return "DOG("+super.race()+")"; }
 }
 let rex = new Dog('Rex');
 rex.sit();
-console.log(`${rex._name} is a ${Dog.race()}`);
+console.log(`${rex._name} is an ${Dog.race()}`); // Rex is an Animal
     </az-format-code>
-    </az-slide>
+	
+		<az-format-code file-name="es2015.class !== OOP.class">
+class Cat extends Animal {
+
+  // KO : pas d'attributs, il faut utiliser le constructeur
+  <del>let _name = "Moustache";</del> 
+
+  constructor(name = "Moustache") { this._name = name; } // OK
+
+  // KO : pas de modificateur de visibilité, jouer sur les imports/exports ou utiliser des astuces (WeakMap par ex)
+  <del>private privateMethod(){ }</del> 
+
+  static race() {
+    return "CAT("+super.race()+")"; //  OK : oui on peut appeler super en static !
+  } 
+}
+        </az-format-code>
     </az-slide>
     
     

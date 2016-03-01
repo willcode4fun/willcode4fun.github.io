@@ -2,6 +2,29 @@ body {
     height: 100%;
     overflow: hidden;
 }
+
+del {
+    text-decoration: none;
+    position: relative;
+}
+del:after {
+    content: ' ';
+    font-size: inherit;
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 33%;
+    bottom: 40%;
+    //border-top: 2px solid #F00;
+    border-bottom: 1px solid #F00;
+}
+.ok{
+	color:#0F0;
+}
+.ko{
+	color:#F00;
+}
 az-presentation {
 	position: absolute;
     display: block;
@@ -54,6 +77,25 @@ az-slide.active{
 	opacity: 1;
 	z-index: 100;
 }
+
+az-slide > div.title {
+	font-size: 1.2em;
+    line-height: 1.4em;
+	font-family: Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+	font-weight:bold;
+	background-color: #555;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+    left: 12%;
+    padding: 1px 15px;
+    position: relative;
+    text-align: center;
+    top: -12px;
+    width: 75%;
+}
+
 
 az-slide > az-format-code{
 	margin-top : -25px;

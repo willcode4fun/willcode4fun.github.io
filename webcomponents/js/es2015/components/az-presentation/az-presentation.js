@@ -5,12 +5,37 @@ class AzPresentationElement extends HTMLElement {
 
 	createdCallback() {
 		this.currentActive = 'start';
+		this.autoDiscoverSlides();
 		this.bindKeyEvents();
 	};
 	
 	attachedCallback() { };
 	
 	attributeChangedCallback(attrName, oldVal, newVal) { };
+	
+	autoDiscoverSlides() {
+		let slides = document.getElementsByTagName("az-slide");
+		console.log("slides="+slides.length);
+		let previous = null;
+		for(let i = 0; i<slides.length; i++){
+			let slide = slides[i];
+			if(!slide.hasAttribute('id')) {
+				slide.setAttribute('id','slide_'+i);
+			}
+			console.log(slide.id);
+			if(!previous){
+				// first slide
+				if(!slide.hasAttribute('start')) {
+					slide.setAttribute('start','start');
+				}
+			} else {
+				if(!previous.hasAttribute('next')){
+					previous.setAttribute('next',slide.id);
+				}
+			}
+			previous = slide;
+		}
+	}
 	
 	bindKeyEvents() {
 		let self = this;

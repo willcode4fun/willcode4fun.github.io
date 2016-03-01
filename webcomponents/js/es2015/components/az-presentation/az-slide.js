@@ -20,7 +20,7 @@ class AzSlideElement extends HTMLElement {
 			.transformations();		
 		applyTransform(this, 'translate(-50%,-50%) '+this.transformations.transform);
 		
-		if(this.hasAttribute('start')){
+		if(this.hasAttribute('start') || this.id === "start"){
 			this.moveTo();
 		}
 	}
