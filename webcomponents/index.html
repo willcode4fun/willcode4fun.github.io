@@ -62,12 +62,13 @@ js
 └─es2015
 │ └─...  // place your es2015 code here !
 └─es5
-  └─...  // es5 bundle and old scripts will be placed here
+  └─...  // es5 bundle and old es5 scripts will be placed here
         </az-format-code>
         
     </az-slide>
     
-    <az-slide ty="800" >      
+    <az-slide>   
+		<div class="title">Configuration de Webpack</div>
         <az-format-code file-name="js/webpack.config.js">
 path = require('path');
 module.exports = {
@@ -99,11 +100,10 @@ require("./es2015/components/az-presentation/az-presentation.js");
         </az-format-code>
     </az-slide>
     
-    <az-slide ty="400" >       
+    <az-slide>     
+<div class="title">Exemple de Web Component</div>	
 <az-format-code file-name="js\es2015\components\az-format-code\az-format-code.js">
 import 'prettify/prettify.js';
-import 'prettify/lang-tree.js';
-import 'prettify/lang-cmd.js';
 import 'prettify/prettify.css';
 import 'prettify/styles/sunburst.css';
 import replaceSpaces from "utilities/text-utils";
@@ -137,7 +137,7 @@ document.registerElement('az-format-code', FormatCodeElement);
     </az-slide>
     
     
-    <az-slide tx="1000" rz="45">
+    <az-slide>
         <az-format-code file-name="CollaborateurRowMapper.java">
 package fr.allianz.tc.dpi.core.mapper;
 import java.sql.ResultSet;
@@ -154,19 +154,9 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
     }
 }</az-format-code>
     </az-slide>
+
     
-    <az-slide tx="600" ty="400" rz="45" scale="0.7">
-    DETAIL 1
-    </az-slide>
-    <az-slide tx="800" ty="500" rz="45" scale="0.7">
-    DETAIL 1
-    </az-slide>
-    
-    <az-slide tx="2000">
-    SLIDE 3
-    </az-slide>
-    
-    <az-slide tx="3000">
+    <az-slide>
         <h1>ES2015 </h1>
         <p>
             Brower Support<BR/>
@@ -186,11 +176,11 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
             </ul>
         </p>
     </az-slide>
-    <az-slide  tx="3000" ty="1000" >
+    <az-slide>
         Brower Support<BR/>
     </az-slide>
     
-    <az-slide  tx="4000" scale="1.2">
+    <az-slide>
     Webcomponents <BR/>
     Support<BR/>
     Polyfill<BR/>
@@ -204,7 +194,7 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
     Libraries<BR/>
     </az-slide>
     
-    <az-slide tx="5000">
+    <az-slide>
     
     <az-format-code file-name="Destructuring : list matching">
 let a=0, b=1;
@@ -238,7 +228,7 @@ describe({name: "Jean", job : "charcutier"}); // Jean est charcutier
     
     </az-slide>
     
-    <az-slide tx="6000">
+    <az-slide>
         <az-format-code file-name="lib/text-utils.js">
 export default function clean(str){
     return str.trim();
@@ -262,7 +252,7 @@ export class MathBuilder{
     </az-slide>
     
     
-    <az-slide tx="5000" ty="600" scale="0.7">
+    <az-slide>
     
             <az-format-code file-name="Arrow functions" lang="js">
 const numbers = [1,2,4,7,9,10,6,8,3,5];
@@ -287,7 +277,7 @@ console.log([1,2,3].map( plusUn ));  // [2,3,4]
     </az-slide>
     
     
-    <az-slide tx="5000" ty="800" scale="0.7">
+    <az-slide>
         <az-format-code file-name="import class.partial as syntactic.sugar from 'OOP'">
 class Animal{
     static race() { return "Animal"; }

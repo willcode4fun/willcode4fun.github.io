@@ -53,8 +53,6 @@ az-slide {
     border: 1px solid rgba(0, 0, 0, .3);
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
-
-    color: rgb(102, 102, 102);
     text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 
     font-family: 'PT Serif', georgia, serif;
@@ -83,7 +81,7 @@ az-slide > div.title {
     line-height: 1.4em;
 	font-family: Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
 	font-weight:bold;
-	background-color: #555;
+	background-color: #777;
     border: 1px solid black;
     border-radius: 3px;
     color: white;

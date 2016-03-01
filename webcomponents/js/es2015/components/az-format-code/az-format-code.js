@@ -25,6 +25,8 @@ class FormatCodeElement extends HTMLElement {
 	appendTitle(text){
 		if(text) {
 			this.firstChild.appendChild(document.createTextNode(text));
+		} else {
+			this.firstChild.style.display="none"
 		}
 	}
 }

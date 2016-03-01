@@ -15,14 +15,13 @@ class AzPresentationElement extends HTMLElement {
 	
 	autoDiscoverSlides() {
 		let slides = document.getElementsByTagName("az-slide");
-		console.log("slides="+slides.length);
+		//console.log("slides="+slides.length);
 		let previous = null;
 		for(let i = 0; i<slides.length; i++){
 			let slide = slides[i];
 			if(!slide.hasAttribute('id')) {
 				slide.setAttribute('id','slide_'+i);
 			}
-			console.log(slide.id);
 			if(!previous){
 				// first slide
 				if(!slide.hasAttribute('start')) {
@@ -31,6 +30,9 @@ class AzPresentationElement extends HTMLElement {
 			} else {
 				if(!previous.hasAttribute('next')){
 					previous.setAttribute('next',slide.id);
+				}
+				if(i === slides.length-1){
+					slide.setAttribute('next',slides[0].id);
 				}
 			}
 			previous = slide;

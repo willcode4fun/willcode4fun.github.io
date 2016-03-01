@@ -1,3 +1,4 @@
 export default function replaceSpaces(str) {
-	return String(str).replace(/\n/g,"<br/>");
+	let rawStr = String(str);
+	return rawStr.replace(/\n/g,"<br/>");
 };
