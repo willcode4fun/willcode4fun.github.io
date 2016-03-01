@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>ECMAScript 2015 &amp; Webcomponents</title>
     <link rel="stylesheet" href="css/styles.css"></link>
+    <link rel="stylesheet" href="css/font-awesome-4.5.0/css/font-awesome.css"></link>
     <script src="js/lib/webcomponents/webcomponents-lite.min.js" type="text/javascript"></script>
     <script src="js/es5/bundle.js" type="text/javascript"></script>
 </head>
@@ -13,18 +14,111 @@
 		<div class="title">Prochainement dans vos Navigateurs...</div>
    
         <az-format-code file-name="let es2015 = javascript.next();">
-
+class Dog extends Animal {
+  constructor(name) { 
+    super();
+    this._name = name;
+  }
+  sit() { 
+    console.log(`Sit ${this._name} !`);
+  }
+}
         </az-format-code>
 	
 	
         <az-format-code file-name="WebComponent extends HTML">
+&lt;head>
+  &lt;link rel="import" href="import-file.html">
+&lt;/head>
 
+&lt;body>
+
+  &lt;template>
+    &lt;p> Will not be rendered &lt;/p>
+  &lt;template>
+
+  &lt;my-form custom="true">
+    &lt;my-button my-attribute="value"> GO &lt;/my-button>
+  &lt;/my-form>
+  
+&lt;/body>
         </az-format-code>
     
     </az-slide>
 
     <az-slide>
-		<div class="title">npm install tout-ce-qu-il-faut </div>
+    <div class="title">Native Browser Support</div>
+    
+    
+    <table class="support-table" width="100%">
+    <thead>
+    <tr>
+    <th width="25%"></th>
+    <th><i class="fa fa-firefox"></i></th>
+    <th><i class="fa fa-chrome"></i></th>
+    <th><i class="fa fa-internet-explorer"></i></th>
+    <th><i class="fa fa-edge"></i></th>
+    <th><i class="fa fa-safari"></i></th>
+    <th><i class="fa fa-opera"></i></th>
+    </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>ES2015</td>
+      <td class="warn">75%</td>
+      <td class="warn">65%</td>
+      <td class="ko">16%</td>
+      <td class="warn">83%</td>
+      <td class="warn">56%</td>
+      <td class="warn">65%</td>
+    </tr>
+    <tr>
+      <td>Custom Element</td>
+      <td><i class="fa fa-warning warn"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+    </tr>
+    <tr>
+      <td>HTML Imports</td>
+      <td><i class="fa fa-warning warn"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-warning warn"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+    </tr>
+    <tr>
+      <td>Templates</td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+    </tr>
+    <tr>
+      <td>Shadow DOM</td>
+      <td><i class="fa fa-warning warn"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-close ko"></i></td>
+      <td><i class="fa fa-check ok"></i></td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <p> ECMAScript 2015 => Transpiler via Babeljs</p>
+    <p> Webcomponents => Polyfill </p>
+    
+    </az-slide>
+    
+    
+    <az-slide>
+		<div class="title"><i class="fa fa-terminal"></i> npm install tout-ce-qu-il-faut </div>
 		
         <az-format-code file-name="Download">
 let codeur = new Coder();
@@ -46,7 +140,7 @@ webpack --progress --colors --watch
     </az-slide>
 
     <az-slide>
-	  <div class="title">Arborescence proposée</div>
+	  <div class="title"><i class="fa fa-folder-open"></i> Arborescence proposée</div>
         <az-format-code lang="tree">
 index.html
 css
@@ -100,67 +194,12 @@ require("./es2015/components/az-presentation/az-presentation.js");
         </az-format-code>
     </az-slide>
     
-    <az-slide>     
-<div class="title">Exemple de Web Component</div>	
-<az-format-code file-name="js\es2015\components\az-format-code\az-format-code.js">
-import 'prettify/prettify.js';
-import 'prettify/prettify.css';
-import 'prettify/styles/sunburst.css';
-import replaceSpaces from "utilities/text-utils";
 
-const template = `&lt;div class="code-title">&lt;/div>&lt;pre class="prettyprint">&lt;/pre>`;
 
-class FormatCodeElement extends HTMLElement {
-
-  createdCallback() { };
-    
-  attachedCallback() { this.render(); };
-    
-  attributeChangedCallback(attrName, oldVal, newVal) { this.render(); };
-    
-  render() {
-    const coloredHTML = PR.prettyPrintOne(replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
-    this.innerHTML = template;
-    this.lastChild.innerHTML = coloredHTML;
-    this.appendTitle(this.getAttribute("file-name"));
-  }
-  
-  appendTitle(text){
-    if(text) {
-      this.firstChild.appendChild(document.createTextNode(text));
-    }
-  }
-}
-document.registerElement('az-format-code', FormatCodeElement);
-</az-format-code>   
-    
-    </az-slide>
-    
-    
     <az-slide>
-        <az-format-code file-name="CollaborateurRowMapper.java">
-package fr.allianz.tc.dpi.core.mapper;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-@Component
-public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
-    @Override
-    public Collaborateur mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-      if (MapperUtils.hasColumn(resultSet, EVALUATION_COLUMN_DATE_DROIT_REPONSE)) {
-        c.setDateModifEvaluation(getDate(EVALUATION_COLUMN_DATE_DROIT_REPONSE));
-      }
-     return c;
-    }
-}</az-format-code>
-    </az-slide>
-
     
-    <az-slide>
-        <h1>ES2015 </h1>
+<div class="title">ECMAScript 2015</div>
         <p>
-            Brower Support<BR/>
-            Transpile<BR/>
             
             REPL :<BR/>
             http://babeljs.io/repl/<BR/>
@@ -175,23 +214,6 @@ public class CollaborateurRowMapper implements RowMapper&lt;Collaborateur&gt; {
                 <li>Promise</li>
             </ul>
         </p>
-    </az-slide>
-    <az-slide>
-        Brower Support<BR/>
-    </az-slide>
-    
-    <az-slide>
-    Webcomponents <BR/>
-    Support<BR/>
-    Polyfill<BR/>
-    Features<BR/>
-    <ul>
-        <li>Custom Elements</li>
-        <li>Shadow dom</li>
-        <li>HTML Imports</li>
-        <li>HTML Templates</li>
-    </ul>
-    Libraries<BR/>
     </az-slide>
     
     <az-slide>
@@ -308,7 +330,54 @@ class Cat extends Animal {
 }
         </az-format-code>
     </az-slide>
+    <az-slide>
+    <div class="title">Webcomponents</div>
+    Support<BR/>
+    Polyfill<BR/>
+    Features<BR/>
+    <ul>
+        <li>Custom Elements</li>
+        <li>Shadow dom</li>
+        <li>HTML Imports</li>
+        <li>HTML Templates</li>
+    </ul>
+    Libraries<BR/>
+    </az-slide>
+        <az-slide>
+<div class="title">Exemple de Web Component</div>	
+<az-format-code file-name="js\es2015\components\az-format-code\az-format-code.js">
+import 'prettify/prettify.js';
+import 'prettify/prettify.css';
+import 'prettify/styles/sunburst.css';
+import replaceSpaces from "utilities/text-utils";
+
+const template = `&lt;div class="code-title">&lt;/div>&lt;pre class="prettyprint">&lt;/pre>`;
+
+class FormatCodeElement extends HTMLElement {
+
+  createdCallback() { };
     
+  attachedCallback() { this.render(); };
+    
+  attributeChangedCallback(attrName, oldVal, newVal) { this.render(); };
+    
+  render() {
+    const coloredHTML = PR.prettyPrintOne(replaceSpaces(this.innerHTML.trim()), this.getAttribute("lang"));
+    this.innerHTML = template;
+    this.lastChild.innerHTML = coloredHTML;
+    this.appendTitle(this.getAttribute("file-name"));
+  }
+  
+  appendTitle(text){
+    if(text) {
+      this.firstChild.appendChild(document.createTextNode(text));
+    }
+  }
+}
+document.registerElement('az-format-code', FormatCodeElement);
+</az-format-code>   
+    
+    </az-slide>
     
 </az-presentation>
 </body>

@@ -19,12 +19,6 @@ del:after {
     //border-top: 2px solid #F00;
     border-bottom: 1px solid #F00;
 }
-.ok{
-	color:#0F0;
-}
-.ko{
-	color:#F00;
-}
 az-presentation {
 	position: absolute;
     display: block;
