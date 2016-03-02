@@ -11,7 +11,7 @@
 <body>
 <az-presentation>
     <az-slide id="start" start>
-		<div class="title">Prochainement dans vos Navigateurs...</div>
+        <div class="title">Prochainement dans vos Navigateurs...</div>
    
         <az-format-code file-name="let es2015 = javascript.next();">
 class Dog extends Animal {
@@ -24,8 +24,8 @@ class Dog extends Animal {
   }
 }
         </az-format-code>
-	
-	
+    
+    
         <az-format-code file-name="WebComponent extends HTML">
 &lt;head>
   &lt;link rel="import" href="import-file.html">
@@ -47,13 +47,14 @@ class Dog extends Animal {
     </az-slide>
 
     <az-slide>
-    <div class="title">Native Browser Support</div>
+    <div class="title">Support des Browsers</div>
     
+	
     
     <table class="support-table" width="100%">
     <thead>
     <tr>
-    <th width="25%"></th>
+    <th width="30%"></th>
     <th><i class="fa fa-firefox"></i></th>
     <th><i class="fa fa-chrome"></i></th>
     <th><i class="fa fa-internet-explorer"></i></th>
@@ -112,14 +113,14 @@ class Dog extends Animal {
     </table>
     
     <p> ECMAScript 2015 => Transpiler via Babeljs</p>
-    <p> Webcomponents => Polyfill </p>
+    <p> Webcomponents => Polyfills </p>
     
     </az-slide>
     
     
     <az-slide>
-		<div class="title"><i class="fa fa-terminal"></i> npm install tout-ce-qu-il-faut </div>
-		
+        <div class="title"><i class="fa fa-terminal"></i> npm install tout-ce-qu-il-faut </div>
+        
         <az-format-code file-name="Download">
 let codeur = new Coder();
 
@@ -130,17 +131,19 @@ nav.visit( "http://webcomponents.org/polyfills/" ).download( "Web components Pol
 nav.visit( "https://nodejs.org/en/download/" ).download( "Node.js" ); 
 
 codeur.use("Node.js").to( build() ).and( transpile(ES2015).to(ES5) );
-		</az-format-code>
-		
+        </az-format-code>
+        
         <az-format-code file-name="cmd >" lang="cmd">
 npm install webpack -g
+
 npm install --save-dev babel-loader babel-preset-es2015 raw-loader html-loader script-loader style-loader css-loader
+
 webpack --progress --colors --watch
         </az-format-code>
     </az-slide>
 
     <az-slide>
-	  <div class="title"><i class="fa fa-folder-open"></i> Arborescence proposée</div>
+      <div class="title"><i class="fa fa-folder-open"></i> Arborescence proposée</div>
         <az-format-code lang="tree">
 index.html
 css
@@ -162,7 +165,7 @@ js
     </az-slide>
     
     <az-slide>   
-		<div class="title">Configuration de Webpack</div>
+        <div class="title">Configuration de Webpack</div>
         <az-format-code file-name="js/webpack.config.js">
 path = require('path');
 module.exports = {
@@ -216,8 +219,110 @@ require("./es2015/components/az-presentation/az-presentation.js");
         </p>
     </az-slide>
     
-    <az-slide>
+	<az-slide>
+	
+		<div class="title">Classes</div>
+        <az-format-code file-name="import class.subset as syntactic.sugar from 'OOP'">
+class Animal{
+    static race() { return "Animal"; }
+}
+class Dog extends Animal{
+    constructor(name) { super();this._name = name; }
+    sit() { console.log(`Sit ${this._name} !`);}
+}
+let rex = new Dog('Rex');
+rex.sit();
+console.log(`${rex._name} is an ${Dog.race()}`); // Rex is an Animal
+		</az-format-code>
+	</az-slide>
+	<az-slide>
+		<div class="title">!Classes</div>
+        <az-format-code file-name="es2015.class !== OOP.class">
+class Cat extends Animal {
+
+  // KO : pas d'attributs, il faut utiliser le constructeur
+  <del>let _name = "Moustache";</del> 
+
+  constructor(name = "Moustache") { this._name = name; } // OK
+
+  // KO : pas de modificateur de visibilité, jouer sur les imports/exports ou utiliser des astuces (WeakMap par ex)
+  <del>private privateMethod(){ }</del> 
+
+  static race() {
+    return "CAT("+super.race()+")"; //  OK : oui on peut appeler super en static !
+  } 
+}
+        </az-format-code>
+    </az-slide>
+	<az-slide>	
+		<div class="title">let, const & default value</div>
+		<az-format-code file-name="let = block scoped var">
+for(let i = 0 ; i < 5 ; i++) {
+  var a = i + 1; // var : scope blobal
+  let b = i - 1; // let : scope {block}
+}
+console.log(`a = ${a}`); // a = 5
+<del>console.log(`b = ${b}`);</del> // b is not defined
+		</az-format-code>
+		<az-format-code file-name="const = immutable let">
+{
+  const c = 5;
+  <del>c= 4;</del> // erreur: ne peut être réassigné
+}
+<del>console.log(`c = ${c}`);</del> // const est également block scoped
+		</az-format-code>
+<az-format-code file-name="default value">		
+function f(a, b = 3) {
+  return a * b;
+}
+console.log(`f(3) = ${f(3)}`); // f(3) = 9
+console.log(`f(3, 4) = ${f(3, 4)}`); // f(3, 4) = 12		
+</az-format-code>		
+		
+ </az-slide>
+	<az-slide>	
+		<div class="title">`${title}`</div>		
+		<az-format-code file-name="String interpolation ... ">
+const n = 5, str="ok";
+console.log(`This String 
+can have
+multiple
+lines = and interpolate valus like :${n}  ${str} and even ${str.length*n}`);
+		</az-format-code>
+		
+				<az-format-code file-name="... mais pas vraiment un 'String Template'">
+let template = `template : a=${a}   b=${b}`;
+const a = 5, b = 6;
+console.log(template); // template : a=undefined   b=undefined
+		</az-format-code>
+		
+	 </az-slide>	
+	    <az-slide>
+    <div class="title">Arrows</div>
+            <az-format-code file-name="Arrow functions" lang="js">
+const numbers = [1,2,4,7,9,10,6,8,3,5];
+
+numbers
+  .map(n => n + 3)   // [4,5,7,10,12,13,9,11,6,8]
+  
+  .sort((a, b) => a>b)   // [4,5,6,7,8,9,10,11,12,13]
+  
+  .filter(n => n%2 === 0)   // [4,6,8,10,12]
+  
+  .forEach(n => console.log(n));   // 4 6 8 10 12
+    </az-format-code>
     
+        <az-format-code file-name="Arrow functions : curryfication">
+function plusX(x) { return n => n+x; };
+
+const plusUn = plusX( 1 );
+
+console.log([1,2,3].map( plusUn ));  // [2,3,4]
+    </az-format-code>
+    </az-slide>
+	
+    <az-slide>
+    <div class="title">Destructuring</div>
     <az-format-code file-name="Destructuring : list matching">
 let a=0, b=1;
 console.log(`a=${a} b=${b}`); // a=0 b=1
@@ -239,7 +344,7 @@ test(...params); // p1=10 p2=11
     </az-format-code>
     
     
-    <az-format-code file-name="Destructuring + default parameters = named parameters !">
+    <az-format-code file-name="Destructuring + default parameters = paramètres nommés !">
 function describe({name: x, job: y = "boulanger"}) {
   console.log(`${x} est ${y}`);
 }
@@ -251,6 +356,7 @@ describe({name: "Jean", job : "charcutier"}); // Jean est charcutier
     </az-slide>
     
     <az-slide>
+		 <div class="title">Modules : Import / Export</div>
         <az-format-code file-name="lib/text-utils.js">
 export default function clean(str){
     return str.trim();
@@ -274,62 +380,66 @@ export class MathBuilder{
     </az-slide>
     
     
-    <az-slide>
+
     
-            <az-format-code file-name="Arrow functions" lang="js">
-const numbers = [1,2,4,7,9,10,6,8,3,5];
+     <az-slide>
+	 <div class="title">Gestion des callbacks : Promises</div>
+	 
+    <az-format-code file-name="Promises : produce">
+function getJSON(url) {
+    return new Promise(function (resolve, reject) {
+        let request = new XMLHttpRequest();
+        request.open('GET', url);
+        request.onload = () => {
+          request.status == 200?
+            resolve(JSON.parse(request.response)): // trigger 'success'
+            reject(Error(request.statusText)); // trigger 'error'
+        };
+        request.onerror = e => {reject(Error(`Network Error(${url}) `))}; // trigger 'error'
+        request.send();
+    });
+}
+</az-format-code>
+    <az-format-code file-name="Promises : consume (simple)">
+getJSON('http://echo.jsontest.com/name/Jean-Paul').then(
+    data => { console.log(`data received ${data.name}`);});
+    </az-format-code>	
+<az-format-code file-name="Promises : consume (handle errors)">
+const errorHandler = error => console.log("error "+error);
 
-numbers
-  .map(n => n + 3)   // [4,5,7,10,12,13,9,11,6,8]
-  
-  .sort((a, b) => a>b)   // [4,5,6,7,8,9,10,11,12,13]
-  
-  .filter(n => n%2 === 0)   // [4,6,8,10,12]
-  
-  .forEach(n => console.log(n));   // 4 6 8 10 12
+getJSON('http://not.found.unkown/Jean-Paul').then(
+  data => { console.log(`data received ${data.name}`);}, 
+  errorHandler);
     </az-format-code>
-    
-        <az-format-code file-name="Arrow functions : curryfication example">
-function plusX(x) { return n => n+x; };
+</az-slide>
+ <az-slide>
+	 <div class="title">Combiner les Promises</div>
+<az-format-code file-name="Promises : all">	
+Promise.all([ 
+  // Toutes les promesses doivent être tenues.
+  getJSON('http://echo.jsontest.com/name/Jean-Paul'),
+  getJSON('http://echo.jsontest.com/name/Jean-Luc'),
+  getJSON('http://echo.jsontest.com/name/Jean-Pierre')
 
-const plusUn = plusX( 1 );
+]).then( ([result1, result2, result3]) => { // retounrne un tableau avec chaque résultat
+  
+  console.log(`success: nom1='${result1.name}' nom2='${result2.name}' nom3='${result3.name}'`);
 
-console.log([1,2,3].map( plusUn ));  // [2,3,4]
-    </az-format-code>
+});
+</az-format-code>
+
+<az-format-code file-name="Promises : race">
+Promise.race([ 
+
+  // C'est le premier résultat reçu qui est retourné
+  getJSON('http://echo.jsontest.com/name/Jean-Paul'),
+  getJSON('http://echo.jsontest.com/name/Jean-Luc')
+
+]).then( data => { console.log(`success: nom='${data.name}'`); });
+</az-format-code>
     </az-slide>
     
-    
-    <az-slide>
-        <az-format-code file-name="import class.partial as syntactic.sugar from 'OOP'">
-class Animal{
-    static race() { return "Animal"; }
-}
-class Dog extends Animal{
-    constructor(name) { super();this._name = name; }
-    sit() { console.log(`Sit ${this._name} !`);}
-}
-let rex = new Dog('Rex');
-rex.sit();
-console.log(`${rex._name} is an ${Dog.race()}`); // Rex is an Animal
-    </az-format-code>
-	
-		<az-format-code file-name="es2015.class !== OOP.class">
-class Cat extends Animal {
 
-  // KO : pas d'attributs, il faut utiliser le constructeur
-  <del>let _name = "Moustache";</del> 
-
-  constructor(name = "Moustache") { this._name = name; } // OK
-
-  // KO : pas de modificateur de visibilité, jouer sur les imports/exports ou utiliser des astuces (WeakMap par ex)
-  <del>private privateMethod(){ }</del> 
-
-  static race() {
-    return "CAT("+super.race()+")"; //  OK : oui on peut appeler super en static !
-  } 
-}
-        </az-format-code>
-    </az-slide>
     <az-slide>
     <div class="title">Webcomponents</div>
     Support<BR/>
@@ -344,7 +454,7 @@ class Cat extends Animal {
     Libraries<BR/>
     </az-slide>
         <az-slide>
-<div class="title">Exemple de Web Component</div>	
+<div class="title">Exemple de Web Component</div>   
 <az-format-code file-name="js\es2015\components\az-format-code\az-format-code.js">
 import 'prettify/prettify.js';
 import 'prettify/prettify.css';

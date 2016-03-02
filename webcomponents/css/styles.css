@@ -1,5 +1,8 @@
 body{
-	background-color : #DDD;
+	background-color : #0088cc;
+}
+*{
+	font-family: Lucida Console,Lucida Sans Typewriter,Lucida Typewriter,monospace;
 }
 .ok{
 	color:green;
@@ -12,13 +15,18 @@ body{
 }
 .support-table{
   width:100%;
+  margin: 30px 10px;
+  border: 1px solid rgba(0, 0, 0, .3);
 }
 .support-table td{
   text-align:center;
+  font-weight:bold;
 }
+
 az-slide {
-	color: white;
-	background-image : linear-gradient(#0088cc, #006699);
+	color: black;
+	background-color : #DDD;
+	
 }
 az-format-code.smallText {
     font-size: 14px;
