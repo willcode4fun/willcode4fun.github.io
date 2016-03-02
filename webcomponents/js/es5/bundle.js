@@ -2373,6 +2373,7 @@
 							slide.setAttribute('start', 'start');
 						}
 					} else {
+						slide.setAttribute('tx', i * 1000);
 						if (!previous.hasAttribute('next')) {
 							previous.setAttribute('next', slide.id);
 						}
@@ -2488,7 +2489,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\r\n    height: 100%;\r\n    overflow: hidden;\r\n}\r\n\r\ndel {\r\n    text-decoration: none;\r\n    position: relative;\r\n}\r\ndel:after {\r\n    content: ' ';\r\n    font-size: inherit;\r\n    display: block;\r\n    position: absolute;\r\n    right: 0;\r\n    left: 0;\r\n    top: 33%;\r\n    bottom: 40%;\r\n    //border-top: 2px solid #F00;\r\n    border-bottom: 1px solid #F00;\r\n}\r\naz-presentation {\r\n\tposition: absolute;\r\n    display: block;\r\n\twidth : 100%;\r\n\theight : 100%;\r\n\ttop :50%;\r\n\tleft :50%;\r\n    transform: translate(50%, 50%);\r\n    transform-origin: top left 0;\r\n    transform-style: preserve-3d;\r\n\tperspective :1000px;\r\n\tperspective-origin: 50% 50%;\r\n    transition: transform 0.3s ease-in 0s;\r\n}\r\naz-slide {\r\n\tposition: absolute;\r\n    display: block;\r\n\ttransform-style: preserve-3d;\r\n\ttransform-origin: 50% 50% 50%;\r\n    width: 900px;\r\n    height: 700px;\r\n\toverflow: hidden;\r\n    padding: 20px 30px;\r\n\r\n    background-color: white;\r\n    border: 2px solid rgb(0, 0, 0);\r\n    border-radius: 10px;\r\n    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);\r\n    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);\r\n\r\n    font-family: 'PT Serif', georgia, serif;\r\n    font-size: 30px;\r\n    line-height: 36px;\r\n    letter-spacing: -1px;\r\n\t\r\n\tmargin: 0;\r\n    opacity: 0.3;\r\n\tz-index: 10;\r\n\t\t  \r\n    -webkit-transition: opacity 1s;\r\n    -moz-transition:    opacity 1s;\r\n    -ms-transition:     opacity 1s;\r\n    -o-transition:      opacity 1s;\r\n    transition:         opacity 1s;\r\n}\r\n\r\naz-slide.active{\r\n\topacity: 1;\r\n\tz-index: 100;\r\n}\r\n\r\naz-slide > div.title {\r\n\tfont-size: 1.2em;\r\n    line-height: 1.4em;\r\n\tfont-family: Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;\r\n\tfont-weight:bold;\r\n\tbackground-color: #777;\r\n    border: 1px solid black;\r\n    border-radius: 5px;\r\n\tbox-shadow: 3px 3px rgba(0, 0, 0, .3);\r\n    color: white;\r\n    display: inline-block;\r\n    left: -5%;\r\n    padding: 1px 15px;\r\n    position: relative;\r\n    text-align: center;\r\n    top: -12px;\r\n    width: 95%;\r\n}", ""]);
+	exports.push([module.id, "body {\r\n    height: 100%;\r\n    overflow: hidden;\r\n}\r\n\r\ndel {\r\n    text-decoration: none;\r\n    position: relative;\r\n}\r\ndel:after {\r\n    content: ' ';\r\n    font-size: inherit;\r\n    display: block;\r\n    position: absolute;\r\n    right: 0;\r\n    left: 0;\r\n    top: 33%;\r\n    bottom: 40%;\r\n    //border-top: 2px solid #F00;\r\n    border-bottom: 1px solid #F00;\r\n}\r\naz-presentation {\r\n\tposition: absolute;\r\n    display: block;\r\n\twidth : 100%;\r\n\theight : 100%;\r\n\ttop :50%;\r\n\tleft :50%;\r\n    transform: translate(50%, 50%);\r\n    transform-origin: top left 0;\r\n    transform-style: preserve-3d;\r\n\tperspective :1000px;\r\n\tperspective-origin: 50% 50%;\r\n    transition: transform 0.3s ease-in 0s;\r\n}\r\naz-slide {\r\n\tposition: absolute;\r\n    display: block;\r\n\ttransform-style: preserve-3d;\r\n\ttransform-origin: 50% 50% 50%;\r\n    width: 900px;\r\n    height: 700px;\r\n\toverflow: hidden;\r\n    padding: 20px 30px;\r\n\r\n    background-color: #DDD;;\r\n    border: 2px solid rgb(0, 0, 0);\r\n    border-radius: 10px;\r\n    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);\r\n    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);\r\n\r\n    font-family: 'PT Serif', georgia, serif;\r\n    font-size: 30px;\r\n    line-height: 36px;\r\n    letter-spacing: -1px;\r\n\t\r\n\tmargin: 0;\r\n    opacity: 0.3;\r\n\tz-index: 10;\r\n\t\t  \r\n    -webkit-transition: opacity 1s;\r\n    -moz-transition:    opacity 1s;\r\n    -ms-transition:     opacity 1s;\r\n    -o-transition:      opacity 1s;\r\n    transition:         opacity 1s;\r\n}\r\n\r\naz-slide.active{\r\n\topacity: 1;\r\n\tz-index: 100;\r\n}\r\n\r\naz-slide > div.title {\r\n\tfont-size: 1.2em;\r\n    line-height: 1.4em;\r\n\tfont-family: Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;\r\n\tfont-weight:bold;\r\n\tbackground-color: #777;\r\n    border: 1px solid black;\r\n    border-radius: 5px;\r\n\tbox-shadow: 3px 3px rgba(0, 0, 0, .3);\r\n    color: white;\r\n    display: inline-block;\r\n    left: -5%;\r\n    padding: 1px 15px;\r\n    position: relative;\r\n    text-align: center;\r\n    top: -12px;\r\n    width: 95%;\r\n}", ""]);
 
 	// exports
 
@@ -2547,6 +2548,7 @@
 				var attrs = (0, _nodeUtils2.default)(this);
 
 				this.transformations = new _transformUtils2.default().translate(attrs.tx, attrs.ty, attrs.tz).rotate(attrs.rx, attrs.ry, attrs.rz).scale(attrs.scale).transformations();
+				this.transformationsActive = new _transformUtils2.default().translate(attrs.tx, attrs.ty, attrs.tz).rotate(attrs.rx, attrs.ry, attrs.rz).scale(1.2).transformations();
 				(0, _cssUtils.applyTransform)(this, 'translate(-50%,-50%) ' + this.transformations.transform);
 
 				if (this.hasAttribute('start') || this.id === "start") {
@@ -2557,9 +2559,20 @@
 			key: 'moveTo',
 			value: function moveTo() {
 				this.parentNode.currentActive = this;
-				(0, _cssUtils.removeAllClass)('active');
+				var nodes = document.getElementsByClassName('active');
+				for (var i = 0; i < nodes.length; i++) {
+					nodes[i].moveOut();
+				}
+
 				(0, _cssUtils.addClass)(this, 'active');
+				(0, _cssUtils.applyTransform)(this, 'translate(-50%,-50%) ' + this.transformationsActive.transform);
 				(0, _cssUtils.applyTransform)(this.parentNode, this.transformations.reverseTransform);
+			}
+		}, {
+			key: 'moveOut',
+			value: function moveOut() {
+				(0, _cssUtils.removeClass)(this, 'active');
+				(0, _cssUtils.applyTransform)(this, 'translate(-50%,-50%) ' + this.transformations.transform);
 			}
 		}]);
 
@@ -2666,7 +2679,7 @@
 			position: "absolute",
 			transform: transform,
 			transformStyle: "preserve-3d",
-			transition: "transform 0.4s ease-in",
+			transition: "transform 0.4s ease-in, opacity 0.5s ease-in",
 			transformOrigin: "50% 50% 50%"
 		});
 	}

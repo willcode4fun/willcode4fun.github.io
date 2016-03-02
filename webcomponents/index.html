@@ -281,12 +281,16 @@ multiple
 lines = and interpolate valus like :${n}  ${str} and even ${str.length*n}`);
 		</az-format-code>
 		
-				<az-format-code file-name="... mais pas vraiment un 'String Template'">
+				<az-format-code file-name="L'évaluation se fait à la déclaration">
 let template = `template : a=${a}   b=${b}`;
 const a = 5, b = 6;
 console.log(template); // template : a=undefined   b=undefined
 		</az-format-code>
-		
+				<az-format-code file-name="Pour avoir un veritable template :">
+let template = (a,b) => `template : a=${a}   b=${b}`;
+const a = 5, b = 6;
+console.log(template(a,b)); // template : a=5   b=6
+    </az-format-code>
 	 </az-slide>	
 	    <az-slide>
     <div class="title">Arrows</div>

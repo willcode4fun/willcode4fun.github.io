@@ -3,7 +3,7 @@ export function applyTransform(element, transform){
 			position: "absolute",
 			transform: transform,
 			transformStyle: "preserve-3d",
-			transition: "transform 0.4s ease-in",
+			transition: "transform 0.4s ease-in, opacity 0.5s ease-in",
 			transformOrigin: "50% 50% 50%"
 		});
 }

@@ -28,6 +28,7 @@ class AzPresentationElement extends HTMLElement {
 					slide.setAttribute('start','start');
 				}
 			} else {
+        slide.setAttribute('tx',i*1000);
 				if(!previous.hasAttribute('next')){
 					previous.setAttribute('next',slide.id);
 				}

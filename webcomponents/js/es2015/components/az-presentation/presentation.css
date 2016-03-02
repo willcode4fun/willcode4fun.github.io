@@ -43,7 +43,7 @@ az-slide {
 	overflow: hidden;
     padding: 20px 30px;
 
-    background-color: white;
+    background-color: #DDD;;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
