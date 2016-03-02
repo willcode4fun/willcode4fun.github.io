@@ -13,16 +13,9 @@
     <az-slide id="start" start>
         <div class="title">Prochainement dans vos Navigateurs...</div>
    
-        <az-format-code file-name="let es2015 = javascript.next();">
-class Dog extends Animal {
-  constructor(name) { 
-    super();
-    this._name = name;
-  }
-  sit() { 
-    console.log(`Sit ${this._name} !`);
-  }
-}
+        <az-format-code file-name="let es2015 = javascript.next(); // aka ES6">
+		<link rel="import" href="./partial/sample1.txt">
+
         </az-format-code>
     
     
@@ -200,23 +193,13 @@ require("./es2015/components/az-presentation/az-presentation.js");
 
 
     <az-slide>
-    
-<div class="title">ECMAScript 2015</div>
-        <p>
-            
-            REPL :<BR/>
-            http://babeljs.io/repl/<BR/>
-            Features :<BR/>
-            https://babeljs.io/docs/learn-es2015/#ecmascript-6-features
-            <ul>
-                <li>Classes</li>
-                <li>Template Strings (interpolated string literals)</li>
-                <li>Arrows</li>
-                <li>let / const</li>
-                <li>Map & Set</li>
-                <li>Promise</li>
-            </ul>
-        </p>
+		<div class="title">ECMAScript 2015</div>
+		<ul>
+			<li><a href="http://babeljs.io/repl/">REPL (http://babeljs.io/repl/)</a></i>
+			<li><a href="https://babeljs.io/docs/learn-es2015/#ecmascript-6-features">Features (https://babeljs.io/docs/learn-es2015/#ecmascript-6-features)</a></i>
+			<li><a href="http://es6-features.org/">Features (http://es6-features.org/)</a></i>
+
+		</ul>
     </az-slide>
     
 	<az-slide>
@@ -258,7 +241,7 @@ class Cat extends Animal {
 		<div class="title">let, const & default value</div>
 		<az-format-code file-name="let = block scoped var">
 for(let i = 0 ; i < 5 ; i++) {
-  var a = i + 1; // var : scope blobal
+  var a = i + 1; // var : scope fonction|global
   let b = i - 1; // let : scope {block}
 }
 console.log(`a = ${a}`); // a = 5
@@ -363,9 +346,9 @@ export default function clean(str){
 }
         </az-format-code>
         <az-format-code file-name="lib/math-utils.js">
-const PI = 3.1416;
-export function plusun = n => n+1;
-export function moinsun(n){ return n-1; }
+const PI = 3.1416; // not visible
+export plusun = n => n+1;
+export moinsun = n => n-1;
 export class MathBuilder{
     constructor(n) {    this.number = n; }
     incPI() { this.number += PI; return this;}
@@ -374,9 +357,19 @@ export class MathBuilder{
 }
         </az-format-code>
         
-        <az-format-code file-name="Import">
-// 
+        <az-format-code file-name="Import 1">
+import * as math from "lib/math-utils"
+console.log(`2 = ${math.plusun(1)}`);
         </az-format-code>
+		<az-format-code file-name="Import 2">
+import {plusun,moinsun} from "lib/math-utils"
+console.log(`2 = ${plusun(1)}`));
+        </az-format-code>
+		<az-format-code file-name="Import 3">
+import from "lib/text-utils"
+console.log(`text = ${clean(" TOTO ")}`);
+        </az-format-code>
+		
     </az-slide>
     
     
@@ -438,8 +431,24 @@ Promise.race([
 ]).then( data => { console.log(`success: nom='${data.name}'`); });
 </az-format-code>
     </az-slide>
-    
+ <az-slide>
+	 <div class="title">Map / Set</div>    
+	     <az-format-code file-name="Map">
+let m = new Map().set("hello", 42).set(8, 'key34');
 
+m.forEach((key, val) => console.log(`key=${key} val=${val}`));
+
+console.log(`m contains hello ? ${m.has("hello")}`); // m contains hello ? true
+
+    </az-format-code>	
+	 	     <az-format-code file-name="Set">
+let s = new Set().add("hello").add("goodbye").add("hello");
+
+s.forEach(elt => console.log(`elt=${elt}`));
+
+console.log(`s contains hello ? ${s.has("hello")}`); // s contains hello ? true
+    </az-format-code>
+ </az-slide>
     <az-slide>
     <div class="title">Webcomponents</div>
     Support<BR/>

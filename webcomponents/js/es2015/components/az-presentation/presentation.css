@@ -88,13 +88,3 @@ az-slide > div.title {
     top: -12px;
     width: 95%;
 }
-
-
-az-slide > az-format-code{
-	margin-top : -25px;
-    display: block;
-	font-family: Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
-	font-weight:bold;
-	font-size: 16px;
-    line-height: 20px;
-}

@@ -1,0 +1,9 @@
+class Dog extends Animal {
+  constructor(name) { 
+    super();
+    this._name = name;
+  }
+  sit() { 
+    console.log(`Sit ${this._name} !`);
+  }
+}
