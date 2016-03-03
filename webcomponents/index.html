@@ -154,6 +154,10 @@ npm install --save-dev babel-loader babel-preset-es2015 raw-loader html-loader s
 
 webpack --progress --colors --watch
         </az-format-code>
+		
+		<div style="position:absolute;bottom:10px;right:10px;">
+			<img src="img/nodejs.png" alt="Node.js" width="100" />
+		</div>
     </az-slide>
 
     <az-slide>
@@ -175,7 +179,9 @@ js
 └─es5
   └─...  // es5 bundle and old es5 scripts will be placed here
         </az-format-code>
-        
+        <div style="position:absolute;bottom:10px;right:10px;">
+			<img src="img/nodejs.png" alt="Node.js" width="100" />
+		</div>
     </az-slide>
     
     <az-slide>   
@@ -209,6 +215,9 @@ module.exports = {
 require("./es2015/components/az-format-code/az-format-code.js");
 require("./es2015/components/az-presentation/az-presentation.js");
         </az-format-code>
+		<div style="position:absolute;bottom:10px;right:10px;">
+			<img src="img/nodejs.png" alt="Node.js" width="100" />
+		</div>
     </az-slide>
     
 
@@ -221,6 +230,7 @@ require("./es2015/components/az-presentation/az-presentation.js");
 			<li><a href="http://es6-features.org/">Features (http://es6-features.org/)</a></i>
 
 		</ul>
+		<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
     </az-slide>
     
 	<az-slide>
@@ -238,6 +248,7 @@ let rex = new Dog('Rex');
 rex.sit();
 console.log(`${rex._name} is an ${Dog.race()}`); // Rex is an Animal
 		</az-format-code>
+		<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
 	</az-slide>
 	<az-slide>
 		<div class="title">!Classes</div>
@@ -257,6 +268,7 @@ class Cat extends Animal {
   } 
 }
         </az-format-code>
+		<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
     </az-slide>
 	<az-slide>	
 		<div class="title">let, const & default value</div>
@@ -282,7 +294,7 @@ function f(a, b = 3) {
 console.log(`f(3) = ${f(3)}`); // f(3) = 9
 console.log(`f(3, 4) = ${f(3, 4)}`); // f(3, 4) = 12		
 </az-format-code>		
-		
+<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
  </az-slide>
 	<az-slide>	
 		<div class="title">`${title}`</div>		
@@ -304,6 +316,7 @@ let template = (a,b) => `template : a=${a}   b=${b}`;
 const a = 5, b = 6;
 console.log(template(a,b)); // template : a=5   b=6
     </az-format-code>
+	<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
 	 </az-slide>	
 	    <az-slide>
     <div class="title">Arrows</div>
@@ -327,6 +340,7 @@ const plusUn = plusX( 1 );
 
 console.log([1,2,3].map( plusUn ));  // [2,3,4]
     </az-format-code>
+	<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
     </az-slide>
 	
     <az-slide>
@@ -360,7 +374,7 @@ describe({name: "Paul"}); // Paul est boulanger
 
 describe({name: "Jean", job : "charcutier"}); // Jean est charcutier
     </az-format-code>
-    
+    <div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
     </az-slide>
     
     <az-slide>
@@ -394,7 +408,7 @@ console.log(`2 = ${plusun(1)}`));
 import from "lib/text-utils"
 console.log(`text = ${clean(" TOTO ")}`);
         </az-format-code>
-		
+	<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>	
     </az-slide>
     
     
@@ -429,6 +443,7 @@ getJSON('http://not.found.unkown/Jean-Paul').then(
   data => { console.log(`data received ${data.name}`);}, 
   errorHandler);
     </az-format-code>
+	<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
 </az-slide>
  <az-slide>
 	 <div class="title">Combiner les Promises</div>
@@ -455,6 +470,7 @@ Promise.race([
 
 ]).then( data => { console.log(`success: nom='${data.name}'`); });
 </az-format-code>
+<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
     </az-slide>
  <az-slide>
 	 <div class="title">Map / Set</div>    
@@ -473,6 +489,7 @@ s.forEach(elt => console.log(`elt=${elt}`));
 
 console.log(`s contains hello ? ${s.has("hello")}`); // s contains hello ? true
     </az-format-code>
+	<div style="position:absolute;bottom:10px;right:10px;"><img src="img/babel.png" alt="Babel & ES2015" width="200" /></div>
  </az-slide>
     <az-slide>
     <div class="title">Webcomponents</div>
@@ -490,6 +507,9 @@ console.log(`s contains hello ? ${s.has("hello")}`); // s contains hello ? true
         <li><a href="http://bosonic.github.io/">Bosonic (http://bosonic.github.io/)</a></li>
         <li><a href="https://customelements.io/">Customelements.io (https://customelements.io/)</a></li>
     </ul>
+	<div style="position:absolute;bottom:10px;right:10px;">
+			<img src="img/logo-wc.svg" alt="Node.js" width="100" />
+		</div>
     </az-slide>
         <az-slide>
 <div class="title">Exemple de Web Component</div>   
@@ -524,7 +544,9 @@ class FormatCodeElement extends HTMLElement {
 }
 document.registerElement('az-format-code', FormatCodeElement);
 </az-format-code>   
-    
+    <div style="position:absolute;bottom:10px;right:10px;">
+			<img src="img/logo-wc.svg" alt="Node.js" width="100" />
+		</div>
     </az-slide>
     <az-slide>
 <div class="title">HTML Templates, HTML Imports & Shadow DOM</div>   
@@ -558,6 +580,9 @@ shadow.innerHTML = '&lt;p>Shadow Text&lt;/p>';
 // comme cette partie du DOM est séparée, le style s'appliquera uniquement au DOM shadow
 shadow.innerHTML += '&lt;style>p { color: red; }&lt;/style>';
         </az-format-code>
+		<div style="position:absolute;bottom:10px;right:10px;">
+			<img src="img/logo-wc.svg" alt="Node.js" width="100" />
+		</div>
     </az-slide>
     <az-slide>
 <div class="title">Questions ?</div> 
