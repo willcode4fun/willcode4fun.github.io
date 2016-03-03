@@ -11,6 +11,19 @@
 <body>
 <az-presentation>
     <az-slide id="start" start>
+		<div class="title">ECMAScript 2015 & WebComponents</div>
+		<BR/>
+		<BR/>
+		<div style="width:100%;text-align:center;">
+		<img src="img/Ecma_RVB-003.jpg" alt="WebComponents.org" width="400" />
+		</div>
+		<BR/><BR/>
+		<div style="width:100%;text-align:center;">
+		<img src="img/logo-wc.svg" alt="WebComponents.org" width="400" />
+		</div>
+	</az-slide>
+
+    <az-slide>
         <div class="title">Prochainement dans vos Navigateurs...</div>
    
         <az-format-code file-name="let es2015 = javascript.next(); // aka ES6">
@@ -463,9 +476,7 @@ console.log(`s contains hello ? ${s.has("hello")}`); // s contains hello ? true
  </az-slide>
     <az-slide>
     <div class="title">Webcomponents</div>
-    Support<BR/>
-    Polyfill<BR/>
-    Features<BR/>
+    <a href="http://webcomponents.org/polyfills/">Polyfills (http://webcomponents.org/polyfills/)</a><BR/>
     <ul>
         <li>Custom Elements</li>
         <li>Shadow dom</li>
@@ -473,6 +484,12 @@ console.log(`s contains hello ? ${s.has("hello")}`); // s contains hello ? true
         <li>HTML Templates</li>
     </ul>
     Libraries<BR/>
+	<ul>
+        <li><a href="https://www.polymer-project.org/1.0/">Polymer (https://www.polymer-project.org/1.0/)</a></li>
+        <li><a href="http://x-tag.github.io/">XTag (http://x-tag.github.io/)</a></li>
+        <li><a href="http://bosonic.github.io/">Bosonic (http://bosonic.github.io/)</a></li>
+        <li><a href="https://customelements.io/">Customelements.io (https://customelements.io/)</a></li>
+    </ul>
     </az-slide>
         <az-slide>
 <div class="title">Exemple de Web Component</div>   
@@ -509,7 +526,52 @@ document.registerElement('az-format-code', FormatCodeElement);
 </az-format-code>   
     
     </az-slide>
-    
+    <az-slide>
+<div class="title">HTML Templates, HTML Imports & Shadow DOM</div>   
+        <az-format-code file-name="HTML Template">
+&lt;body>
+
+  &lt;template>
+    &lt;!-- La structure DOM sera créé, mais il n'y aura pas de rendu-->
+    &lt;p> Will not be rendered &lt;/p> 
+  &lt;template>
+  
+&lt;/body>
+        </az-format-code>
+		
+		
+		 <az-format-code file-name="HTML Import">
+&lt;body>
+  
+  &lt;!-- permet un import de fichier, utilise les mêmes règles de sécurité que les XMLHttpRequest-->
+  &lt;link rel="import" href="import-file.html"> 
+  
+&lt;/body>
+        </az-format-code>
+		
+		<az-format-code file-name="Shadow DOM, Components libs for Pros">
+let shadow = document.querySelector('#hostElement').createShadowRoot();
+
+// partie invisible pour le DOM principal
+shadow.innerHTML = '&lt;p>Shadow Text&lt;/p>'; 
+
+// comme cette partie du DOM est séparée, le style s'appliquera uniquement au DOM shadow
+shadow.innerHTML += '&lt;style>p { color: red; }&lt;/style>';
+        </az-format-code>
+    </az-slide>
+    <az-slide>
+<div class="title">Questions ?</div> 
+<div style="width:100%;text-align:center;">
+<span style="font-size:20em"><i class="fa fa-question"></i>	</span>
+</div>
+</az-slide>
+<az-slide>	
+<div class="title">Thanks !</div>
+<div style="width:100%;text-align:center;">
+<span style="font-size:20em"><i class="fa fa-exclamation"></i>	</span>
+</div>
+</az-slide>
+
 </az-presentation>
 </body>
 </html>
