@@ -61,10 +61,26 @@
 		font-size:18vh !important;
 		text-align:center;
 	}
+	.small{
+		font-size:11px;;
+	}
+	.only-on-mobile{
+		display: none;
+	}
+	
 .svg-inline--fa.fa-fw {
     width: 1em;
 }
-	
+
+/* mobile phone */
+@media all and (max-width: 768px) {
+    .only-on-mobile{
+		display: visible;
+	}
+	.lightblue {
+		background-color:#AFA !important;
+	}
+}
 
 	</style>
 </head>
@@ -73,6 +89,7 @@
 <div id="main-area">
 <div class="content lightblue">
 AABBCCDD
+<span class="only-on-mobile small">Mobile Phone View</span>
 </div>
 </div>
 <div id="buttons">
