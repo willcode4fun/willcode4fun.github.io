@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Mobile UI test</title>
     
 	<script defer src="js\lib\fontawesome\js\fontawesome-all.min.js"></script>
@@ -25,7 +26,7 @@
 		font-style: italic;
 	}
 	div {
-		font-size : 5vh;
+		font-size : 5vw;
 	}
 	
 	#main-area {
@@ -75,12 +76,46 @@
 /* mobile phone */
 @media all and (max-width: 768px) {
     .only-on-mobile{
-		display: visible;
+		display: visible !important;
 	}
 	.lightblue {
 		background-color:#AFA !important;
 	}
 }
+@media all and (orientation:portrait) {
+
+	#main-area {
+		width :100vw;
+		height :100vw;
+	}
+	.button {
+		width :20vw;
+		height :20vw;
+		float:right;
+	}
+	#buttons {
+		position: absolute;
+		left: 0px;
+		top: 100vw;
+	}
+	#buttons-sub {
+		position: absolute;
+		left: 0px;
+		top: 120vw;
+	}
+	#buttons-3 {
+		position: absolute;
+		left: 0px;
+		top: 140vw;
+	}
+	.content {
+		font-size:18vw !important;
+	}
+}
+
+
+
+
 
 	</style>
 </head>
