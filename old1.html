@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Javascript Tools Review</title>
+    
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<i class="fas fa-flask"></i>
+
+<i class="fas fa-mobile-alt"></i>
+
+<i class="fas fa-graduation-cap"></i>
+
+
+	<p>Device : <span id="device"></span></p>
+	<p>Zoom : <span id="zoom"></span></p>
+	<table>
+		<tbody>
+			<tr><td>1</td><td id="up">2</td><td>3</td></tr>
+			<tr><td id="left">4</td><td>5</td><td  id="right">6</td></tr>
+			<tr><td>7</td><td id="down">8</td><td>9</td></tr>
+		</tbody>
+	</table>
+	<pre>
+Javascript :
+
+- Dependency management
+- Test/Unit test
+- audit
+- Minify
+	uglify.js
+
+CSS :
+
+- audit
+- minify
+	</pre>
+	<div style="width:300px">
+		<pre  class="prettyprint"><code>
+var linesNum = (1 + env.length);
+var lineNumbersWrapper;
+
+lines = new Array(linesNum);
+lines = lines.join('');
+		</code></pre>
+		</div>
+   
+
+</div>
+
+<script src="js/lib/prettify/run_prettify.js?skin=sunburst"></script>
+<script src="js/lib/hammer.js/hammer.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
+<script src="js/control-manager.js"></script>
+<script>
+
+
+
+var manager = new EventManager();
+$("#device").text(manager.isMobile.any()?"MOBILE":"LAPTOP");
+manager.onUpAction(function(){
+	$("#up").text("UP");
+});
+manager.onDownAction(function(){
+	$("#down").text("DOWN");
+});
+manager.onLeftAction(function(){
+	$("#left").text("LEFT");
+});
+manager.onRightAction(function(){
+	$("#right").text("RIGHT");
+});
+
+manager.onZoomAction(
+function(){
+	$("#zoom").text("ZOOMIN");
+},
+function(){
+	$("#zoom").text("ZOOMOUT");
+}
+);
+</script>			
+<script>impress().init();</script>
+
+</body>
+</html>
+
+
+
+
+
