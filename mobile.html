@@ -156,7 +156,7 @@ AABBCCDD
   // Check to make sure the browser supports service workers
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/js/service-worker.js')
+    .register('service-worker.js')
     .then(() => {
       console.log('Service worker registered');
     })
