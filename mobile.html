@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="theme-color" content="#1f263b">
     <title>Mobile UI test</title>
-    
+    <link rel="manifest" href="manifest.json">
+
 	<script defer src="js\lib\fontawesome\js\fontawesome-all.min.js"></script>
 
 
@@ -150,6 +152,21 @@ AABBCCDD
 <div class="button"><div class="content lightgrey"><i class="fa fa-cog fa-fw"></i></div></div>
 </div>
 </div>
+
+<script>
+  // Check to make sure the browser supports service workers
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/js/service-worker.js')
+    .then(() => {
+      console.log('Service worker registered');
+    })
+    .catch(err => {
+      console.log('Service worker registration failed: ' + err);
+    });
+}
+</script>
+
 </body>
 </html>
 
