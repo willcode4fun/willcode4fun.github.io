@@ -7,20 +7,10 @@
 
   "icons": [
     {
-      "src": "launcher-icon-1x.png",
-      "type": "image/png",
-      "sizes": "48x48"
-    },
-    {
-      "src": "launcher-icon-2x.png",
-      "type": "image/png",
-      "sizes": "96x96"
-    },
-    {
-      "src": "launcher-icon-4x.png",
+      "src": "launcher-icon.png",
       "type": "image/png",
       "sizes": "192x192"
     }
   ],
-  "start_url": "mobile.html?launcher=true"
+  "start_url": "https://willcode4fun.github.io/mobile.html"
 }
