@@ -2,7 +2,8 @@ const CACHE_NAME = 'mpwa-cache-v1';
 const urlsToCache = [
   '/mobile.html',
   '/js/lib/fontawesome/js/fontawesome-all.min.js',
-  '/launcher-icon.png'
+  '/launcher-icon.png',
+  '/manifest.json'
 ];
 
 // Listen for the install event, which fires when the service worker is installing
