@@ -6,126 +6,16 @@
 	<meta name="theme-color" content="#1f263b">
     <title>Mobile UI test</title>
     <link rel="manifest" href="manifest.json">
-	<link rel="icon" type="image/png" href="launcher-icon.png" />
+	<link rel="icon" type="image/png" href="img/launcher-icon.png" />
 	<script defer src="js\lib\fontawesome\js\fontawesome-all.min.js"></script>
-
-    <style>
-	body, div {
-		overflow:hidden;
-	}
-	.lightgreen {
-		background-color:#AFA;
-	}
-	.lightblue {
-		background-color:#AAF;
-	}
-	.lightred {
-		background-color:#FAA;
-	}
-	.lightgrey {
-		background-color:#AAA;
-		font-style: italic;
-	}
-	div {
-		font-size : 5vw;
-	}
-	
-	#main-area {
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		width :100vh;
-		height :100vh;
-	}
-	#buttons {
-		position: absolute;
-		left: 100vh;
-		top: 0px;
-	}
-	#buttons-sub {
-		position: absolute;
-		left: 120vh;
-		top: 0px;
-	}
-	#buttons-3 {
-		position: absolute;
-		left: 140vh;
-		top: 0px;
-	}
-	.button {
-		width :20vh;
-		height :20vh;
-	}
-	.content {
-		width :100%;
-		height :100%;
-		
-		font-size:18vh !important;
-		text-align:center;
-	}
-	.small{
-		font-size:11px;;
-	}
-	.only-on-mobile{
-		display: none;
-	}
-	
-.svg-inline--fa.fa-fw {
-    width: 1em;
-}
-
-/* mobile phone */
-@media screen and (max-width: 1001px) {
-    .only-on-mobile{
-		display: visible !important;
-	}
-	.lightblue {
-		background-color:#AFA !important;
-	}
-}
-@media screen and (max-width: 1001px) and (orientation:portrait) {
-
-	#main-area {
-		width :100vw;
-		height :100vw;
-	}
-	.button {
-		width :20vw;
-		height :20vw;
-		float:right;
-	}
-	#buttons {
-		position: absolute;
-		left: 0px;
-		top: 100vw;
-	}
-	#buttons-sub {
-		position: absolute;
-		left: 0px;
-		top: 120vw;
-	}
-	#buttons-3 {
-		position: absolute;
-		left: 0px;
-		top: 140vw;
-	}
-	.content {
-		font-size:18vw !important;
-	}
-}
-
-
-
-
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="css\mobile.css">
 </head>
 <body>
 <div id="container" class="lightgreen">
 <div id="main-area">
 <div class="content lightblue">
 AABBCCDD
-<span class="only-on-mobile small">Mobile Phone View</span>
+<div class="only-on-mobile small">Mobile Phone View</div>
 </div>
 </div>
 <div id="buttons">
