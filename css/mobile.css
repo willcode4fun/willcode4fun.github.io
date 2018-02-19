@@ -19,11 +19,20 @@ body, div {
 .button-bar div{
 	width :20vh;
 	height :20vh;
-	font-size:18vh !important;
+	font-size:15vh;
+	line-height:19vh;
 	text-align:center;
+	border: 1px solid black;
+	border-radius:1vh;
 }
-.button-bar div:nth-child(even) {background-color: #CCC}
-.button-bar div:nth-child(odd) {background-color: #FFF}
+.button-bar:nth-child(even) div:nth-child(even) {background-color: #CCC}
+.button-bar:nth-child(even) div:nth-child(odd) {background-color: #FFF}
+
+.button-bar:nth-child(odd) div:nth-child(even) {background-color: #FFF}
+.button-bar:nth-child(odd) div:nth-child(odd) {background-color: #CCC}
+
+
+
 
 div {
 	font-size : 5vw;
@@ -55,11 +64,11 @@ div {
 	left: 140vh;
 	top: 0px;
 }
-.button {
-
-}
-.content {
-
+.ball{
+	width:5vh !important;
+	height:5vh !important;
+	border-radius:5vh;
+	background-color:#F00;
 }
 .small{
 	font-size:11px;;
@@ -75,7 +84,7 @@ div {
 /* mobile phone */
 @media screen and (max-width: 1001px) {
     .only-on-mobile{
-		display: visible !important;
+		display: inline !important;
 	}
 	.lightblue {
 		background-color:#AFA !important;
@@ -88,10 +97,12 @@ div {
 		height :100vw;
 	}
 	.button-bar div{
-		width :20vw;
-		height :20vw;
-		font-size:18vw !important;
-		float:right;
+		width :19vw;
+		height :19vw;
+		font-size:15vw;
+		line-height:19vw;
+		border-radius:1vw;
+		float:left;
 	}
 	#buttons {
 		left: 0px;
