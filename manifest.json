@@ -4,7 +4,6 @@
   "background_color": "#1f263b",
   "theme_color": "#1f263b",
   "display": "standalone",
-
   "icons": [
     {
       "src": "launcher-icon.png",
@@ -12,7 +11,7 @@
       "sizes": "192x192"
     },
 	{
-      "src": "launcher-icon.png",
+      "src": "launcher-icon-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
