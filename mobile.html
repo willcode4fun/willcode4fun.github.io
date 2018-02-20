@@ -17,6 +17,7 @@
 	<div class="content lightblue">
 		AABBCCDD
 		<span class="small only-on-mobile">Mobile Phone View</span>
+		<span id="action">ACTION</span>
 		<div id="ball" style="position:absolute;bottom:50%;right:50%"></div>
 	</div>
 </div>
@@ -60,10 +61,17 @@ var ball = {
 		var b = document.getElementById('ball');b.style.right=0;b.style.left=null;
 	}
 };
+function touchHandler(ev){
+document.getElementById('action').innerText = ev.type;
+}
+
+Hammer(document.body).on("swipe tap press", touchHandler);
+
 
 var hammertime = new Hammer(document.getElementById('main-area'),
 {touchAction: 'auto',
-inputClass: Hammer.SUPPORT_POINTER_EVENTS ? Hammer.PointerEventInput : Hammer.TouchInput});
+inputClass: Hammer.SUPPORT_POINTER_EVENTS ? Hammer.PointerEventInput : Hammer.TouchInput}
+);
 hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 hammertime
 	.on('swipeleft', ball.left)
