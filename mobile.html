@@ -61,7 +61,9 @@ var ball = {
 	}
 };
 
-var hammertime = new Hammer(document.getElementById('main-area'));
+var hammertime = new Hammer(document.getElementById('main-area'),
+{touchAction: 'auto',
+inputClass: Hammer.SUPPORT_POINTER_EVENTS ? Hammer.PointerEventInput : Hammer.TouchInput});
 hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 hammertime
 	.on('swipeleft', ball.left)
