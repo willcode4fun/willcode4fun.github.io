@@ -8,6 +8,7 @@
     <link rel="manifest" href="manifest.json">
 	<link rel="icon" type="image/png" href="img/launcher-icon.png" />
 	<script defer src="js\lib\fontawesome\js\fontawesome-all.min.js"></script>
+	<script src="js\hammer.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css\mobile.css">
 </head>
 <body>
@@ -20,8 +21,8 @@
 	</div>
 </div>
 <div id="buttons" class="button-bar">
-	<div id="up" onclick="ball.top()"><i class="fa fa-arrow-circle-up"></i></div>
-	<div id="down" onclick="ball.bottom()"><i class="fa fa-arrow-circle-down"></i></div>
+	<div id="up" onclick="ball.up()"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="down" onclick="ball.down()"><i class="fa fa-arrow-circle-down"></i></div>
 	<div id="left" onclick="ball.left()"><i class="fa fa-arrow-circle-left"></i></div>
 	<div id="right" onclick="ball.right()"><i class="fa fa-arrow-circle-right"></i></div>
 	<div><i class="fa fa-flag"></i></div>
@@ -46,10 +47,10 @@
 
 <script>
 var ball = {
-	"top" : function(){
+	"up" : function(){
 		var b = document.getElementById('ball');b.style.top=0;b.style.bottom=null;
 	},
-	"bottom" : function(){
+	"down" : function(){
 		var b = document.getElementById('ball');b.style.top=null;b.style.bottom=0;
 	},
 	"left" : function(){
@@ -59,6 +60,16 @@ var ball = {
 		var b = document.getElementById('ball');b.style.right=0;b.style.left=null;
 	}
 };
+
+var hammertime = new Hammer(document.getElementById('main-area'));
+hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+hammertime
+	.on('swipeleft', ball.left)
+	.on('swiperight', ball.right)
+	.on('swipeup', ball.up)
+	.on('swipedown',ball.down);
+
+
   // Check to make sure the browser supports service workers
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
