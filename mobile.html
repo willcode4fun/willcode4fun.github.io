@@ -16,14 +16,14 @@
 	<div class="content lightblue">
 		AABBCCDD
 		<span class="small only-on-mobile">Mobile Phone View</span>
-		<div class="ball" style="position:absolute;bottom:50%;right:50%"></div>
+		<div id="ball" style="position:absolute;bottom:50%;right:50%"></div>
 	</div>
 </div>
 <div id="buttons" class="button-bar">
-	<div><i class="fa fa-cog"></i></div>
-	<div><i class="fa fa-shield-alt"></i></div>
-	<div><i class="fa fa-book"></i></div>
-	<div><i class="fa fa-pencil-alt"></i></div>
+	<div id="up" onclick="ball.top()"><i class="fa fa-arrow-circle-up"></i></div>
+	<div id="down" onclick="ball.bottom()"><i class="fa fa-arrow-circle-down"></i></div>
+	<div id="left" onclick="ball.left()"><i class="fa fa-arrow-circle-left"></i></div>
+	<div id="right" onclick="ball.right()"><i class="fa fa-arrow-circle-right"></i></div>
 	<div><i class="fa fa-flag"></i></div>
 </div>
 
@@ -45,6 +45,20 @@
 
 
 <script>
+var ball = {
+	"top" : function(){
+		var b = document.getElementById('ball');b.style.top=0;b.style.bottom=null;
+	},
+	"bottom" : function(){
+		var b = document.getElementById('ball');b.style.top=null;b.style.bottom=0;
+	},
+	"left" : function(){
+		var b = document.getElementById('ball');b.style.right=null;b.style.left=0;
+	},
+	"right" : function(){
+		var b = document.getElementById('ball');b.style.right=0;b.style.left=null;
+	}
+};
   // Check to make sure the browser supports service workers
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
