@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="theme-color" content="#1f263b">
 	
 <meta http-equiv="cache-control" content="no-cache" />
@@ -21,7 +21,7 @@
 <div id="main-area">
 	<div class="content lightblue">
 		AABBCCDD
-		<span class="small only-on-mobile">Mobile Phone View</span>
+		<span class="small only-on-mobile">Mobile Phone View</span><BR/>
 		<span id="action">ACTION</span>
 		<div id="ball" style="position:absolute;bottom:50%;right:50%"></div>
 	</div>
@@ -52,6 +52,25 @@
 
 
 <script>
+
+function log(str){
+	document.getElementById('action').innerText = str;
+	console.log(str);
+}
+var startPoints = {};
+document.body.addEventListener('touchstart', function(event) {
+  var touch = event.changedTouches[0];
+  startPoints[touch.identifier] = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
+});
+
+document.body.addEventListener('touchend', function(event) {
+  var touch = event.changedTouches[0];
+  var start = startPoints[touch.identifier];
+  var end = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
+  log('move ('+start.x+','+start.y+') to ('+end.x+','+end.y+')');
+});
+
+
 var ball = {
 	"up" : function(){
 		var b = document.getElementById('ball');b.style.top=0;b.style.bottom=null;
