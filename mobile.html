@@ -51,24 +51,10 @@
 </div>
 
 
+<script src="js\gestures.js"></script>
 <script>
 
-function log(str){
-	document.getElementById('action').innerText = str;
-	console.log(str);
-}
-var startPoints = {};
-document.body.addEventListener('touchstart', function(event) {
-  var touch = event.changedTouches[0];
-  startPoints[touch.identifier] = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
-});
-
-document.body.addEventListener('touchend', function(event) {
-  var touch = event.changedTouches[0];
-  var start = startPoints[touch.identifier];
-  var end = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
-  log('move ('+start.x+','+start.y+') to ('+end.x+','+end.y+')');
-});
+addGestureEventListener(document.body);
 
 
 var ball = {
@@ -104,7 +90,7 @@ hammertime
 	.on('swipedown',ball.down);
 
 
-  // Check to make sure the browser supports service workers
+// Check to make sure the browser supports service workers
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('service-worker.js')
@@ -116,6 +102,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
+
 
 </body>
 </html>
