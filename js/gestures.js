@@ -2,15 +2,15 @@ function log(str){
 	document.getElementById('action').innerText = str;
 	console.log(str);
 }
-function addGestureEventListener(elem) {
+//function addGestureEventListener(elem) {
 	var startPoints = {};
 	
-	elem.addEventListener('touchstart', function(event) {
+	document.body.addEventListener('touchstart', function(event) {
 	  var touch = event.changedTouches[0];
 	  startPoints[touch.identifier] = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
 	});
 
-	elem.addEventListener('touchend', function(event) {
+	document.body.addEventListener('touchend', function(event) {
 	  var touch = event.changedTouches[0];
 	  var start = startPoints[touch.identifier];
 	  var end = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
@@ -37,7 +37,11 @@ function addGestureEventListener(elem) {
 		  }
 	  }
 	});
-}
+	
+	log('listening gestures'); 
+//}
 function squareDist(a,b){
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
 }
+
+//addGestureEventListener(document.body);

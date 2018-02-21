@@ -51,12 +51,8 @@
 </div>
 
 
-<script src="js\gestures.js"></script>
+
 <script>
-
-addGestureEventListener(document.body);
-
-
 var ball = {
 	"up" : function(){
 		var b = document.getElementById('ball');b.style.top=0;b.style.bottom=null;
@@ -71,23 +67,7 @@ var ball = {
 		var b = document.getElementById('ball');b.style.right=0;b.style.left=null;
 	}
 };
-function touchHandler(ev){
-document.getElementById('action').innerText = ev.type;
-}
 
-Hammer(document.body).on("swipe tap press", touchHandler);
-
-
-var hammertime = new Hammer(document.getElementById('main-area'),
-{touchAction: 'auto',
-inputClass: Hammer.SUPPORT_POINTER_EVENTS ? Hammer.PointerEventInput : Hammer.TouchInput}
-);
-hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
-hammertime
-	.on('swipeleft', ball.left)
-	.on('swiperight', ball.right)
-	.on('swipeup', ball.up)
-	.on('swipedown',ball.down);
 
 
 // Check to make sure the browser supports service workers
@@ -102,7 +82,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
-
+<script src="js\gestures.js"></script>
 
 </body>
 </html>
