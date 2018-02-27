@@ -2,6 +2,8 @@ const CACHE_NAME = 'mpwa-cache-v1';
 const urlsToCache = [
   '/mobile.html',
   '/css/mobile.css',
+  '/js/gestures.js',
+  '/js/hammer.min.js',
   '/js/lib/fontawesome/js/fontawesome-all.min.js',
   '/img/launcher-icon.png',
   '/img/launcher-icon-512x512.png',

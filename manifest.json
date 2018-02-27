@@ -3,7 +3,7 @@
   "name": "Test application for Progressive Web Applications",
   "background_color": "#1f263b",
   "theme_color": "#1f263b",
-  "display": "standalone",
+  "display": "fullscreen",
   "icons": [
     {
       "src": "img/launcher-icon.png",
