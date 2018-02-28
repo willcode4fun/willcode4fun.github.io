@@ -32,7 +32,9 @@ body, div {
 .button-bar:nth-child(odd) div:nth-child(odd) {background-color: #CCC}
 
 
-
+#perso {
+	background-image :  url("../img/spritesheet.png");
+}
 
 div {
 	font-size : 5vw;
@@ -70,6 +72,14 @@ div {
 	border-radius:5vh;
 	background-color:#F00;
 }
+#perso {
+	width:7.2vh !important;
+	height:10vh !important;
+	background-image :  url("../img/spritesheet.png");
+	background-repeat: no-repeat;
+    background-position: -72 top;
+}
+
 .small{
 	font-size:11px;;
 }

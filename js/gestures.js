@@ -2,15 +2,15 @@ function log(str){
 	document.getElementById('action').innerText = str;
 	console.log(str);
 }
-//function addGestureEventListener(elem) {
+function addGestureEventListener(elem) {
 	var startPoints = {};
 	
-	document.body.addEventListener('touchstart', function(event) {
+	elem.addEventListener('touchstart', function(event) {
 	  var touch = event.changedTouches[0];
 	  startPoints[touch.identifier] = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
 	});
 
-	document.body.addEventListener('touchend', function(event) {
+	elem.addEventListener('touchend', function(event) {
 	  var touch = event.changedTouches[0];
 	  var start = startPoints[touch.identifier];
 	  var end = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
@@ -36,12 +36,13 @@ function log(str){
 			  log('diag ('+det+')('+start.x+','+start.y+') to ('+end.x+','+end.y+')');
 		  }
 	  }
+	  event.preventDefault();
 	});
 	
 	log('listening gestures'); 
-//}
+}
 function squareDist(a,b){
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
 }
 
-//addGestureEventListener(document.body);
+addGestureEventListener(document.body);
