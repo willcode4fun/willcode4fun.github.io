@@ -53,6 +53,7 @@
 
 
 
+<script src="js\gestures.js"></script>
 <script>
 var ball = {
 	"up" : function(){
@@ -82,8 +83,27 @@ if ('serviceWorker' in navigator) {
       console.log('Service worker registration failed: ' + err);
     });
 }
+
+addGestureEventListener(document.body, function(dir){
+	var p = document.getElementById('perso');
+	p.className = dir;
+	var top = parseInt(p.style.top || 0);
+	var left = parseInt(p.style.left || 0);
+	if(dir == 'down'){
+		top += 100;
+		p.style.top = top +"px";
+	} else if(dir == 'up'){
+		top -= 100;
+		p.style.top = top +"px";
+	} else if(dir == 'left'){
+		left -= 100;
+		p.style.left = left +"px";
+	} else if(dir == 'right'){
+		left += 100;
+		p.style.left = left +"px";
+	}
+});
 </script>
-<script src="js\gestures.js"></script>
 
 </body>
 </html>

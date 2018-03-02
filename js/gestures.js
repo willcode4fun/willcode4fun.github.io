@@ -2,7 +2,7 @@ function log(str){
 	document.getElementById('action').innerText = str;
 	console.log(str);
 }
-function addGestureEventListener(elem) {
+function addGestureEventListener(elem, callback) {
 	var startPoints = {};
 	
 	elem.addEventListener('touchstart', function(event) {
@@ -22,15 +22,16 @@ function addGestureEventListener(elem) {
 		  var det = (dx*dx-dy*dy)/(dx*dx + dy*dy);
 		  if(det > 0.8){
 			  if(dx > 0){
-				  log('right');
+				  callback('right');
+				 
 			  } else {
-				  log('left');
+				  callback('left');
 			  }
 		  } else if(det <(-0.8)){
 			  if(dy > 0){
-				log('down');
+				callback('down');
 			  } else {
-				log('up');
+				callback('up');
 			  }
 		  } else {
 			  log('diag ('+det+')('+start.x+','+start.y+') to ('+end.x+','+end.y+')');
@@ -44,5 +45,3 @@ function addGestureEventListener(elem) {
 function squareDist(a,b){
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
 }
-
-addGestureEventListener(document.body);

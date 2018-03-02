@@ -31,11 +31,6 @@ body, div {
 .button-bar:nth-child(odd) div:nth-child(even) {background-color: #FFF}
 .button-bar:nth-child(odd) div:nth-child(odd) {background-color: #CCC}
 
-
-#perso {
-	background-image :  url("../img/spritesheet.png");
-}
-
 div {
 	font-size : 5vw;
 }
@@ -73,11 +68,25 @@ div {
 	background-color:#F00;
 }
 #perso {
-	width:7.2vh !important;
-	height:10vh !important;
+	position: absolute;
+	width:72px !important;
+	height:100px !important;
 	background-image :  url("../img/spritesheet.png");
+	background-color : transparent ;
 	background-repeat: no-repeat;
-    background-position: -72 top;
+}
+
+#perso.left{
+    background-position: -216px top;
+}
+#perso.right{
+    background-position: -72px top;
+}
+#perso.up{
+    background-position: -144px top;
+}
+#perso.down{
+    background-position: 0px top;
 }
 
 .small{
