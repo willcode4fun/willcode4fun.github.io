@@ -7,6 +7,7 @@ const urlsToCache = [
   '/js/lib/fontawesome/js/fontawesome-all.min.js',
   '/img/launcher-icon.png',
   '/img/launcher-icon-512x512.png',
+  '/img/spritesheet.png',
   '/manifest.json'
 ];
 
