@@ -35,7 +35,7 @@ body, div {
 .button-bar:nth-child(odd) div:nth-child(odd) {background-color: #CCC}
 
 div {
-	font-size : 5vw;
+	font-size : 5vmin;
 }
 
 #main-area {
@@ -74,26 +74,26 @@ div {
 }
 #perso {
 	position: absolute;
-	width:7.2vh  !important;
-	height:10vh  !important;
+	width:7.2vmin  !important;
+	height:10vmin  !important;
 	background-image :  url("../img/spritesheet.png");
 	background-color : transparent ;
 	background-repeat: no-repeat;
-    background-size: 28.8vh 10vh;
+    background-size: 28.8vmin 10vmin;
 	
 }
 
 #perso.left{
-    background-position: -21.6vh top;
+    background-position: -21.6vmin top;
 }
 #perso.right{
-    background-position: -7.2vh top;
+    background-position: -7.2vmin top;
 }
 #perso.up{
-    background-position: -14.4vh top;
+    background-position: -14.4vmin top;
 }
 #perso.down{
-    background-position: 0vh top;
+    background-position: 0vmin top;
 }
 .tile-map, .tile-map div {
 	width :100%;
@@ -101,16 +101,17 @@ div {
 }
 .tile-map {
 	overflow:hidden;
+	position:relative;
 }
 .tile-map div{
 	background-color:transparent;
 	overflow:visible;
+	position:relative;
 }
 .tile-map div>div{
 	width:10vmin;
 	height:10vmin;
 	border-radius:1vmin;
-	border: 1px solid black;
 	position:absolute;
 }
 
@@ -136,19 +137,19 @@ div {
 }
 @media screen and (max-width: 1001px) and (orientation:portrait) {
 	#buttons {
-		left: 0px;
+		left: 0vmin;
 		top: 100vmin;
 		width :100vmin;
 		height :20vmin;
 	}
 	#buttons-sub {
-		left: 0px;
+		left: 0vmin;
 		top: 120vmin;
 		width :100vmin;
 		height :20vmin;
 	}
 	#buttons-3 {
-		left: 0px;
+		left: 0vmin;
 		top: 140vmin;
 		width :100vmin;
 		height :20vmin;
