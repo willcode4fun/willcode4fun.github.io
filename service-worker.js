@@ -8,6 +8,7 @@ const urlsToCache = [
   '/img/launcher-icon.png',
   '/img/launcher-icon-512x512.png',
   '/img/spritesheet.png',
+  '/json/map.json',
   '/manifest.json'
 ];
 

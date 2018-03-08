@@ -17,15 +17,21 @@
 	<link rel="stylesheet" type="text/css" href="css\mobile.css">
 </head>
 <body>
-<div id="container" class="lightgreen">
+<div id="container">
 <div id="main-area">
-	<div class="content lightblue">
+	<div id="map" class="tile-map lightgreen">
+		<div  id="map-content" style="position:absolute;top:-8vmin;left:-8vmin">
+			
+		</div>
+	</div><!--
+	
+	<div class="lightblue">
 		AABBCCDD
 		<span class="small only-on-mobile">Mobile Phone View</span><BR/>
 		<span id="action">ACTION</span>
 		<div id="ball" style="position:absolute;bottom:50%;right:50%"></div>
-		<div id="perso"></div>
-	</div>
+		
+	</div>-->
 </div>
 <div id="buttons" class="button-bar">
 	<div id="up" onclick="ball.up()"><i class="fa fa-arrow-circle-up"></i></div>
@@ -55,8 +61,73 @@
 
 <script src="js\gestures.js"></script>
 <script>
+
+function loadJSON(json_url, callback) {   
+
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', json_url, true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);  
+ }
+
+var map = {
+	url :"json/map.txt",
+	init : function(){ loadJSON(this.url, this.afterInit) },
+	afterInit : function(lines){
+		var lineArr = lines.replace(/' '/g, 'O').split('\n');
+		var height=lineArr.length,width=0;
+		for(var n=0; n<lineArr.length; n++ ){
+			var len = lineArr[n].length;
+			width = (len > width)?len:width;
+		}
+		for(var n=0; n<lineArr.length; n++ ){
+			lineArr[n] = lineArr[n].padEnd(width,'O');
+		}
+
+		var div = document.getElementById('map-content');
+		for(var x=0; x<width; x++ ){
+			for(var y=0; y<height; y++){
+				var t = lineArr[y][x];
+				div.innerHTML += '<div class="tile-'+t+'" style="top:'+(10*y)+'vmin;left:'+(10*x)+'vmin"></div>';
+			}
+		}
+		
+		div.innerHTML += '<div id="perso" style="top:10vmin;left:10.9vmin"></div>';
+	},
+	afterInit2 : function(response){
+
+		var data = JSON.parse(response);
+		console.log("actual_JSON");
+		console.dir(data);
+		var div = document.getElementById('map-content');
+		data.tiles = data.tiles.replace(/\s/g, '');
+		for(var x=0; x<data.width; x++ ){
+			for(var y=0; y<data.height; y++){
+				var t = data.tiles[data.width *y +x];
+				div.innerHTML += '<div class="tile-'+t+'" style="top:'+(10*y)+'vmin;left:'+(10*x)+'vmin"></div>';
+			}
+		}
+		
+		div.innerHTML += '<div id="perso" style="top:10vmin;left:10.9vmin"></div>';
+	}
+}
+map.init();
+
+function notify(){
+	var n = new Notification("Salut!");
+	n.onshow = function () { 
+		setTimeout(n.close.bind(n), 5000); 
+	}
+}
 var ball = {
 	"up" : function(){
+	notify();
 		var b = document.getElementById('ball');b.style.top=0;b.style.bottom=null;
 	},
 	"down" : function(){
@@ -70,19 +141,55 @@ var ball = {
 	}
 };
 
+window.addEventListener('load', function () {
+  Notification.requestPermission(function (status) {
+    // Cela permet d'utiliser Notification.permission avec Chrome/Safari
+    if (Notification.permission !== status) {
+      Notification.permission = status;
+	  console.log(Notification.permission);
+    }
+	console.log(Notification.permission);
+	});
 
+});
+
+
+
+function initPush(serviceWorkerRegistration){
+  if('PushManager' in window){
+		console.log('Push is supported');
+		serviceWorkerRegistration.pushManager.subscribe().then(
+      function(pushSubscription) {
+        console.log(pushSubscription.subscriptionId);
+        console.log(pushSubscription.endpoint);
+        // The push subscription details needed by the application
+        // server are now available, and can be sent to it using,
+        // for example, an XMLHttpRequest.
+      }, 
+	  function(error) {
+        console.log(error);
+      }
+    );
+	}
+}
 
 // Check to make sure the browser supports service workers
 if ('serviceWorker' in navigator) {
+	
   navigator.serviceWorker
     .register('service-worker.js')
-    .then(() => {
+    .then((serviceWorkerRegistration) => {
       console.log('Service worker registered');
+	  initPush(serviceWorkerRegistration);
     })
     .catch(err => {
       console.log('Service worker registration failed: ' + err);
     });
+  
 }
+
+
+
 
 addGestureEventListener(document.body, function(dir){
 	var p = document.getElementById('perso');
@@ -90,17 +197,17 @@ addGestureEventListener(document.body, function(dir){
 	var top = parseInt(p.style.top || 0);
 	var left = parseInt(p.style.left || 0);
 	if(dir == 'down'){
-		top += 100;
-		p.style.top = top +"px";
+		top += 10;
+		p.style.top = top +"vmin";
 	} else if(dir == 'up'){
-		top -= 100;
-		p.style.top = top +"px";
+		top -= 10;
+		p.style.top = top +"vmin";
 	} else if(dir == 'left'){
-		left -= 100;
-		p.style.left = left +"px";
+		left -= 10;
+		p.style.left = left +"vmin";
 	} else if(dir == 'right'){
-		left += 100;
-		p.style.left = left +"px";
+		left += 10;
+		p.style.left = left +"vmin";
 	}
 });
 </script>
