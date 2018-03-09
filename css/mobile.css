@@ -8,10 +8,10 @@ body, div {
 	background-color:#AAF;
 }
 .tile-X {
-	background-color:#FAA !important;
+	background-color:#999 !important;
 }
 .tile-O {
-	background-color:#AAF !important;
+	background-color:#DDD !important;
 }
 .lightgrey {
 	background-color:#AAA;

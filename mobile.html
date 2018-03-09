@@ -19,10 +19,8 @@
 <body>
 <div id="container">
 <div id="main-area">
-	<div id="map" class="tile-map lightgreen">
-		<div  id="map-content" style="position:absolute;top:-8vmin;left:-8vmin">
-			
-		</div>
+	<div id="map" class="tile-map">
+		<div  id="map-content" style="position:absolute;top:-10vmin;left:-10vmin"></div>
 	</div><!--
 	
 	<div class="lightblue">
@@ -61,11 +59,16 @@
 
 <script src="js\gestures.js"></script>
 <script>
-
+function moveElement(element, dx, dy){
+	var top = parseInt(element.style.top || 0);
+	var left = parseInt(element.style.left || 0);
+	element.style.top = (top + dy) +"vmin";
+	element.style.left = (left + dx) +"vmin";
+}
 function loadJSON(json_url, callback) {   
 
     var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
+    xobj.overrideMimeType("application/json");
     xobj.open('GET', json_url, true); // Replace 'my_data' with the path to your file
     xobj.onreadystatechange = function () {
           if (xobj.readyState == 4 && xobj.status == "200") {
@@ -80,7 +83,8 @@ var map = {
 	url :"json/map.txt",
 	init : function(){ loadJSON(this.url, this.afterInit) },
 	afterInit : function(lines){
-		var lineArr = lines.replace(/' '/g, 'O').split('\n');
+		var clines = lines.replace(/ /g, 'O');
+		var lineArr = clines.split('\n');
 		var height=lineArr.length,width=0;
 		for(var n=0; n<lineArr.length; n++ ){
 			var len = lineArr[n].length;
@@ -100,82 +104,15 @@ var map = {
 		
 		div.innerHTML += '<div id="perso" style="top:10vmin;left:10.9vmin"></div>';
 	},
-	afterInit2 : function(response){
-
-		var data = JSON.parse(response);
-		console.log("actual_JSON");
-		console.dir(data);
-		var div = document.getElementById('map-content');
-		data.tiles = data.tiles.replace(/\s/g, '');
-		for(var x=0; x<data.width; x++ ){
-			for(var y=0; y<data.height; y++){
-				var t = data.tiles[data.width *y +x];
-				div.innerHTML += '<div class="tile-'+t+'" style="top:'+(10*y)+'vmin;left:'+(10*x)+'vmin"></div>';
-			}
-		}
-		
-		div.innerHTML += '<div id="perso" style="top:10vmin;left:10.9vmin"></div>';
+	moveUp(){
+	
 	}
 }
 map.init();
 
-function notify(){
-	var n = new Notification("Salut!");
-	n.onshow = function () { 
-		setTimeout(n.close.bind(n), 5000); 
-	}
-}
-var ball = {
-	"up" : function(){
-	notify();
-		var b = document.getElementById('ball');b.style.top=0;b.style.bottom=null;
-	},
-	"down" : function(){
-		var b = document.getElementById('ball');b.style.top=null;b.style.bottom=0;
-	},
-	"left" : function(){
-		var b = document.getElementById('ball');b.style.right=null;b.style.left=0;
-	},
-	"right" : function(){
-		var b = document.getElementById('ball');b.style.right=0;b.style.left=null;
-	}
-};
-
-window.addEventListener('load', function () {
-  Notification.requestPermission(function (status) {
-    // Cela permet d'utiliser Notification.permission avec Chrome/Safari
-    if (Notification.permission !== status) {
-      Notification.permission = status;
-	  console.log(Notification.permission);
-    }
-	console.log(Notification.permission);
-	});
-
-});
-
-
-
-function initPush(serviceWorkerRegistration){
-  if('PushManager' in window){
-		console.log('Push is supported');
-		serviceWorkerRegistration.pushManager.subscribe().then(
-      function(pushSubscription) {
-        console.log(pushSubscription.subscriptionId);
-        console.log(pushSubscription.endpoint);
-        // The push subscription details needed by the application
-        // server are now available, and can be sent to it using,
-        // for example, an XMLHttpRequest.
-      }, 
-	  function(error) {
-        console.log(error);
-      }
-    );
-	}
-}
 
 // Check to make sure the browser supports service workers
 if ('serviceWorker' in navigator) {
-	
   navigator.serviceWorker
     .register('service-worker.js')
     .then((serviceWorkerRegistration) => {
@@ -185,31 +122,22 @@ if ('serviceWorker' in navigator) {
     .catch(err => {
       console.log('Service worker registration failed: ' + err);
     });
-  
 }
 
-
-
-
-addGestureEventListener(document.body, function(dir){
+addGestureEventListener(document.getElementById('main-area'), function(dir){
 	var p = document.getElementById('perso');
 	p.className = dir;
-	var top = parseInt(p.style.top || 0);
-	var left = parseInt(p.style.left || 0);
 	if(dir == 'down'){
-		top += 10;
-		p.style.top = top +"vmin";
+		moveElement(p, 0, 10);
 	} else if(dir == 'up'){
-		top -= 10;
-		p.style.top = top +"vmin";
+		moveElement(p, 0, -10);
 	} else if(dir == 'left'){
-		left -= 10;
-		p.style.left = left +"vmin";
+		moveElement(p, -10, 0);
 	} else if(dir == 'right'){
-		left += 10;
-		p.style.left = left +"vmin";
+		moveElement(p, 10, 0);
 	}
 });
+
 </script>
 
 </body>

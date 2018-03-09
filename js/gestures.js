@@ -1,5 +1,5 @@
 function log(str){
-	document.getElementById('action').innerText = str;
+	//document.getElementById('action').innerText = str;
 	console.log(str);
 }
 function addGestureEventListener(elem, callback) {
@@ -23,7 +23,6 @@ function addGestureEventListener(elem, callback) {
 		  if(det > 0.8){
 			  if(dx > 0){
 				  callback('right');
-				 
 			  } else {
 				  callback('left');
 			  }
