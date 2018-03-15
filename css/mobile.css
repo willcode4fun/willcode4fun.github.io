@@ -83,6 +83,19 @@ div {
 	
 }
 
+
+
+#perso.surprise::before {
+    content: "!"; /* Insert content that looks like bullets */
+    color: red; /* Or a color you prefer */
+	background-color: rgba(0, 0, 0, 0.3);
+	width:2vmin !important;
+	height:2vmin !important;
+	border-radius:2vmin;
+	font-size : 2vmin;
+}
+
+
 #perso.left{
     background-position: -21.6vmin top;
 }

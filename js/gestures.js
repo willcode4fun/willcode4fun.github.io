@@ -8,6 +8,7 @@ function addGestureEventListener(elem, callback) {
 	elem.addEventListener('touchstart', function(event) {
 	  var touch = event.changedTouches[0];
 	  startPoints[touch.identifier] = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
+	  event.preventDefault();
 	});
 
 	elem.addEventListener('touchend', function(event) {
@@ -15,7 +16,7 @@ function addGestureEventListener(elem, callback) {
 	  var start = startPoints[touch.identifier];
 	  var end = {'x' : parseInt(touch.pageX), 'y':parseInt(touch.pageY)};
 	  if(squareDist(start,end) < 50){
-		log('touch ('+end.x+','+end.y+')'); 
+		//log('touch ('+end.x+','+end.y+')'); 
 	  } else {
 		  var dx = end.x - start.x;
 		  var dy = end.y - start.y;
